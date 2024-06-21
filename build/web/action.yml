@@ -1,0 +1,6 @@
+name: "Void Build Web"
+author: "Jake Gordon <jake@void.dev>"
+description: "Default web builder for Void games"
+runs:
+  using: "docker"
+  image: "Dockerfile"
