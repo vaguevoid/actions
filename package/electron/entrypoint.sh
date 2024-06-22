@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -x
+set -xeuo pipefail
 
 NAME=${NAME:-release}
 DIST=${DIST:-dist}

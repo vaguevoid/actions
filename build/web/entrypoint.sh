@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -x
+set -xeuo pipefail
 
 bun install
 bun run build --base "./"

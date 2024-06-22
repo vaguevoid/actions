@@ -4,7 +4,10 @@ This public repository contains GitHub actions for use with the [Void](https://v
 
 ## Build
 
-The following action can be used to build the web version of a Void game
+The following action can be used to build the web version of a Void game.
+
+Assumptions:
+  * Has a `build` script defined inside `package.json`
 
 ```yaml
   steps:
@@ -15,6 +18,9 @@ The following action can be used to build the web version of a Void game
 ## Package
 
 The following action can be used to package a Void game in Electron
+
+Assumptions
+  * Game has been built using action above
 
 ```yaml
   steps:
@@ -29,7 +35,21 @@ The following action can be used to package a Void game in Electron
 
 The following action can be used to deploy a Void game to Steam
 
- * COMING SOON
+Assumptions
+  * Game has been built and packaged using actions above
+  * A GitHub secret `STEAM_CONFIG_VDF` exists containing Steam user authorization
+
+```yaml
+  steps:
+    - name: Deploy to Steam
+      uses: vaguevoid/actions/deploy/steam@alpha
+      with:
+        username: vaguevoidbot
+        configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
+```
+
+> Use the `vaguevoid/actions/deploy/login` Docker image to generate a `STEAM_CONFIG_VDF` for your
+Steam user. You may have to manually regenerate and upload a new secret every 30 days.
 
 
 ### Development

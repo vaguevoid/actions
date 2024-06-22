@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 STEAM_HOME=${STEAM_HOME:-$HOME/.steam/steam}
 STEAM_CONFIG_DIR=${STEAM_HOME}/config
