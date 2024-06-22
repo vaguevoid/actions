@@ -2,11 +2,11 @@ name: "Void Build Web"
 author: "Jake Gordon <jake@void.dev>"
 description: "Default web builder for Void games"
 inputs:
-  dist:
+  output:
     description: "output directory for bundled web game"
-    default: "dist"
+    default: "release/web"
     required: true
-  base:
+  baseUrl:
     description: "base URL"
     default: "./"
     required: true
@@ -14,5 +14,5 @@ runs:
   using: "docker"
   image: "Dockerfile"
   env:
-    dist: ${{ inputs.dist }}
-    base: ${{ inputs.base }}
+    output: ${{ inputs.output }}
+    baseUrl: ${{ inputs.baseUrl }}

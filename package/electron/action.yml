@@ -2,30 +2,44 @@ name: "Void Package Electron"
 author: "Jake Gordon <jake@void.dev>"
 description: "Default Electron packager for Void games"
 inputs:
-  prefix:
-    description: "short name for your game that can be used as filename friendly prefix, e.g. snakes-on-steam"
-    required: true
-    default: "release"
-  dist:
+  bundle:
     description: "path to your bundled web game"
     required: true
-    default: "dist"
+    default: "release/web"
+  releasePath:
+    description: "directory for packaged releases"
+    default: "release"
+    required: true
+  executable:
+    description: "executable file name prefix"
+    required: true
+    default: "electron"
+  platform:
+    description: "target platform" 
+    required: true
+    type: choice
+    options:
+      - win32
+      - linux
+      - darwin
+  arch:
+    description: "target architecture"
+    required: true
+    type: choice
+    options:
+      - x64
+      - arm64
   electronVersion:
-    description: "version of electron to package the game"
+    description: "version of electron"
     required: true
     default: "31.0.2"
-  platform:
-    description: "target platform (win32 | linux | darwin)"
-    required: true
-  arch:
-    description: "target architecture (x64 | arm64)"
-    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
   env:
-    prefix: ${{ inputs.prefix }}
-    dist: ${{ inputs.dist }}
-    electronVersion: ${{ inputs.electronVersion }}
+    bundle: ${{ inputs.bundle }}
+    releasePath: ${{ inputs.releasePath }}
+    executable: ${{ inputs.executable }}
     platform: ${{ inputs.platform }}
     arch: ${{ inputs.arch }}
+    electronVersion: ${{ inputs.electronVersion }}

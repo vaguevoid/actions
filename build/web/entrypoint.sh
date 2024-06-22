@@ -1,8 +1,10 @@
 #!/bin/bash
 set -x
 
-base=${base:-./}
-dist=${dist:./dist}
+output=${output:-./release/web}
+baseUrl=${baseUrl:-./}
+
+mkdir -p $output
 
 bun install
-bun run build --base "${base}" --outDir "${dist}" --emptyOutDir
+bun run build --base "${baseUrl}" --outDir "${output}" --emptyOutDir

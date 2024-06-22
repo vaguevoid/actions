@@ -1,29 +1,35 @@
 #!/bin/bash
 
-prefix=${prefix:-release}
-dist=${dist:-dist}
+bundle=${bundle:-release/web}
+releasePath=${releasePath:-release}
+executable=${executable:-electron}
 electronVersion=${electronVersion:-31.0.2}
 
 if [[ -z "$platform" ]]; then
-  echo "\$platform required"
+  echo "platform required"
   exit 1
 fi
 
 if [[ -z "$arch" ]]; then
-  echo "\$arch required"
+  echo "arch required"
   exit 1
 fi
 
-if [ ! -f "$dist/package.json" ]; then
-cat << 'EOF' > "$dist/package.json"
+if [ ! -d "$bundle" ]; then
+  echo "$bundle doesn't exist"
+  exit 1
+fi
+
+if [ ! -f "$bundle/package.json" ]; then
+cat << 'EOF' > "$bundle/package.json"
 {
   "main": "electron.js"
 }
 EOF
 fi
 
-if [ ! -f "$dist/electron.js" ]; then
-cat << 'EOF' > "$dist/electron.js"
+if [ ! -f "$bundle/electron.js" ]; then
+cat << 'EOF' > "$bundle/electron.js"
   const { app, BrowserWindow } = require("electron")
   const path = require("node:path")
 
@@ -58,9 +64,12 @@ fi
 
 set -x
 
-npx @electron/packager $dist $prefix \
+mkdir -p $releasePath
+
+npx @electron/packager $bundle $executable \
   --electron-version=$electronVersion \
   --platform $platform \
-  --arch $arch
+  --arch $arch \
+  --out $releasePath
 
-chmod go+rx $prefix-$platform-$arch
+chmod go+rx $releasePath/$executable-$platform-$arch

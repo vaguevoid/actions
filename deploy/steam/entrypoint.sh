@@ -1,6 +1,13 @@
 #!/bin/bash
 
-prefix=${prefix:-release}
+releasePath=${releasePath:-release}
+executable=${executable:-electron}
+buildDescription=${buildDescription:-a void game}
+manifestFile=${releasePath}/manifest.vdf
+
+steam_home=$HOME/.steam/steam
+config_dir=$steam_home/config
+config_file=$config_dir/config.vdf
 
 if [[ -z "$configVdf" ]]; then
   echo "\$configVdf required"
@@ -17,11 +24,10 @@ if [[ -z "$appId" ]]; then
   exit 1
 fi
 
-buildDescription=${buildDescription:-a void game}
-
-steam_home=$HOME/.steam/steam
-config_dir=$steam_home/config
-config_file=$config_dir/config.vdf
+if [ ! -d "$releasePath" ]; then
+  echo "$releasePath not found"
+  exit 1
+fi
 
 mkdir -p /output
 
@@ -35,25 +41,25 @@ echo "**********************"
 echo " Generate Manifest"
 echo "**********************"
 
-cat << EOF > "manifest.vdf"
+cat << EOF > "$manifestFile"
 "AppBuild"
 {
   "AppID" "$appId"
   "Desc" "$buildDescription"
-  "ContentRoot" "./"
-  "BuildOutput" "/output"
+  "ContentRoot" "$releasePath"
+  "BuildOutput" "$releasePath"
   "Depots"
   {
 EOF
 
 if [[ ! -z "$windowsDepotId" ]]; then
 echo "... including windows depot"
-cat << EOF >> "manifest.vdf"
+cat << EOF >> "$manifestFile"
     "$windowsDepotId"
     {
       "FileMapping"
       {
-        "LocalPath" "./$prefix-win32-x64/*"
+        "LocalPath" "./$executable-win32-x64/*"
         "DepotPath" "."
         "recursive" "1"
       }
@@ -63,12 +69,12 @@ fi
 
 if [[ ! -z "$appleIntelDepotId" ]]; then
 echo "... including apple (intel) depot"
-cat << EOF >> "manifest.vdf"
+cat << EOF >> "$manifestFile"
     "$appleIntelDepotId"
     {
       "FileMapping"
       {
-        "LocalPath" "./$prefix-darwin-x64/*"
+        "LocalPath" "./$executable-darwin-x64/*"
         "DepotPath" "."
         "recursive" "1"
       }
@@ -78,12 +84,12 @@ fi
 
 if [[ ! -z "$appleArmDepotId" ]]; then
 echo "... including apple (arm) depot"
-cat << EOF >> "manifest.vdf"
+cat << EOF >> "$manifestFile"
     "$appleArmDepotId"
     {
       "FileMapping"
       {
-        "LocalPath" "./$prefix-darwin-arm64/*"
+        "LocalPath" "./$executable-darwin-arm64/*"
         "DepotPath" "."
         "recursive" "1"
       }
@@ -91,7 +97,7 @@ cat << EOF >> "manifest.vdf"
 EOF
 fi
 
-cat << EOF >> "manifest.vdf"
+cat << EOF >> "$manifestFile"
   }
 }
 EOF
@@ -113,7 +119,7 @@ echo "Upload Build"
 echo "************"
 echo ">>> TODO: run steamcmd upload here <<<"
 
-# steamcmd +login "$username" +run_app_build manifest.vdf +quit
+# steamcmd +login "$username" +run_app_build "$manifestFile" +quit
 # result = $?
 #
 # if [ $result -ne 0 ]; then
