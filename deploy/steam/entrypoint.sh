@@ -1,30 +1,101 @@
 #!/bin/bash
-set -xeuo pipefail
 
-if [[ -z "${CONFIG_VDF}" ]]; then
-  echo "\$CONFIG_VDF required"
+if [[ -z "$configVdf" ]]; then
+  echo "\$configVdf required"
   exit 1
 fi
 
-if [[ -z "${STEAM_USERNAME}" ]]; then
-  echo "\$STEAM_USERNAME required"
+if [[ -z "$username" ]]; then
+  echo "\$username required"
   exit 1
 fi
+
+if [[ -z "$appId" ]]; then
+  echo "\$appId required"
+  exit 1
+fi
+
+buildDescription=${buildDescription:-a void game}
 
 steam_home=$HOME/.steam/steam
-steam_config_dir=$steam_home/config
-steam_config_file=$steam_config_dir/config.vdf
+config_dir=$steam_home/config
+config_file=$config_dir/config.vdf
 
 echo "************************************"
-echo "Copy SteamGuard $steam_config_file"
+echo "Copy SteamGuard $config_file"
 echo "************************************"
-mkdir -p "$steam_config_dir"
-echo "${CONFIG_VDF}" | base64 -d > "$steam_config_file"
+mkdir -p "$config_dir"
+echo "$configVdf" | base64 -d > "$config_file"
+
+echo "**********************"
+echo " Generate Manifest"
+echo "**********************"
+
+cat << EOF > "manifest.vdf"
+"AppBuild"
+{
+  "AppID" "$appId"
+  "Desc" "$buildDescription"
+  "ContentRoot" "./content"
+  "BuildOutput" "./output"
+  "Depots"
+  {
+EOF
+
+if [[ ! -z "$windowsDepotId" ]]; then
+echo "... including windows depot"
+cat << EOF >> "manifest.vdf"
+    "$windowsDepotId"
+    {
+      "FileMapping"
+      {
+        "LocalPath" "./release-win32-x64/*"
+        "DepotPath" "."
+        "recursive" "1"
+      }
+    }
+EOF
+fi
+
+if [[ ! -z "$appleIntelDepotId" ]]; then
+echo "... including apple (intel) depot"
+cat << EOF >> "manifest.vdf"
+    "$appleIntelDepotId"
+    {
+      "FileMapping"
+      {
+        "LocalPath" "./release-darwin-x64/*"
+        "DepotPath" "."
+        "recursive" "1"
+      }
+    }
+EOF
+fi
+
+if [[ ! -z "$appleArmDepotId" ]]; then
+echo "... including apple (arm) depot"
+cat << EOF >> "manifest.vdf"
+    "$appleArmDepotId"
+    {
+      "FileMapping"
+      {
+        "LocalPath" "./release-darwin-arm64/*"
+        "DepotPath" "."
+        "recursive" "1"
+      }
+    }
+EOF
+fi
+
+cat << EOF >> "manifest.vdf"
+  }
+}
+EOF
 
 echo "****************"
 echo "Test Steam Login"
 echo "****************"
-steamcmd +login "${STEAM_USERNAME}" +quit;
+steamcmd +login "$username" +quit;
 result = $?
 
 if [ $result -ne 0 ]; then
@@ -33,22 +104,12 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
-echo "***********************"
-echo "Generate Depot Manifest"
-echo "***********************"
-echo ">>> TODO: generate depot manifest(s) here <<<"
-
-echo "**********************"
-echo "Generate App Manifest"
-echo "**********************"
-echo ">>> TODO: generate app manifest here <<<"
-
 echo "************"
 echo "Upload Build"
 echo "************"
 echo ">>> TODO: run steamcmd upload here <<<"
 
-# steamcmd +login "${STEAM_USERNAME}" +run_app_build manifest.vdf +quit
+# steamcmd +login "$username" +run_app_build manifest.vdf +quit
 # result = $?
 #
 # if [ $result -ne 0 ]; then

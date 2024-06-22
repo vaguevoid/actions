@@ -1,6 +1,36 @@
 name: "Void Deploy Steam"
 author: "Jake Gordon <jake@void.dev>"
 description: "Deploy Void game to Steam"
+inputs:
+  username:
+    description: "A Steam username"
+    required: true
+  configVdf:
+    description: "A steamcmd authorization config.vdf file (base64 encoded)"
+    required: true
+  appId:
+    description: "A Steam Application ID"
+    required: true
+  windowsDepotId:
+    description: "A Steam Depot ID to contain your Windows executable"
+    required: false
+  appleIntelDepotId:
+    description: "A Steam Depot ID to contain your Apple (Intel) excutable"
+    required: false
+  appleArmDepotId:
+    description: "A Steam Depot ID to contain your Apple (ARM) executable"
+    required: false
+  buildDescription:
+    description: "Description for this build"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
+  env:
+    username: ${{ inputs.username }}
+    configVdf: ${{ inputs.configVdf }}
+    appId: ${{ inputs.appId }}
+    windowsDepotId: ${{ inputs.windowsDepotId }}
+    appleIntelDepotId: ${{ inputs.appleIntelDepotId }}
+    appleArmDepotId: ${{ inputs.appleArmDepotId }}
+    buildDescription: ${{ inputs.buildDescription }}
