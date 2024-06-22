@@ -2,6 +2,10 @@ name: "Void Package Electron"
 author: "Jake Gordon <jake@void.dev>"
 description: "Default Electron packager for Void games"
 inputs:
+  prefix:
+    description: "short name for your game that can be used as filename friendly prefix, e.g. snakes-on-steam"
+    required: true
+    default: "release"
   dist:
     description: "path to your bundled web game"
     required: true
@@ -20,6 +24,7 @@ runs:
   using: "docker"
   image: "Dockerfile"
   env:
+    prefix: ${{ inputs.prefix }}
     dist: ${{ inputs.dist }}
     electronVersion: ${{ inputs.electronVersion }}
     platform: ${{ inputs.platform }}

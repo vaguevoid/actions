@@ -1,5 +1,7 @@
 #!/bin/bash
 
+prefix=${prefix:-release}
+
 if [[ -z "$configVdf" ]]; then
   echo "\$configVdf required"
   exit 1
@@ -21,6 +23,8 @@ steam_home=$HOME/.steam/steam
 config_dir=$steam_home/config
 config_file=$config_dir/config.vdf
 
+mkdir -p /output
+
 echo "************************************"
 echo "Copy SteamGuard $config_file"
 echo "************************************"
@@ -36,8 +40,8 @@ cat << EOF > "manifest.vdf"
 {
   "AppID" "$appId"
   "Desc" "$buildDescription"
-  "ContentRoot" "./content"
-  "BuildOutput" "./output"
+  "ContentRoot" "./"
+  "BuildOutput" "/output"
   "Depots"
   {
 EOF
@@ -49,7 +53,7 @@ cat << EOF >> "manifest.vdf"
     {
       "FileMapping"
       {
-        "LocalPath" "./release-win32-x64/*"
+        "LocalPath" "./$prefix-win32-x64/*"
         "DepotPath" "."
         "recursive" "1"
       }
@@ -64,7 +68,7 @@ cat << EOF >> "manifest.vdf"
     {
       "FileMapping"
       {
-        "LocalPath" "./release-darwin-x64/*"
+        "LocalPath" "./$prefix-darwin-x64/*"
         "DepotPath" "."
         "recursive" "1"
       }
@@ -79,7 +83,7 @@ cat << EOF >> "manifest.vdf"
     {
       "FileMapping"
       {
-        "LocalPath" "./release-darwin-arm64/*"
+        "LocalPath" "./$prefix-darwin-arm64/*"
         "DepotPath" "."
         "recursive" "1"
       }

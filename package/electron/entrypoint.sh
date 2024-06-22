@@ -1,6 +1,6 @@
 #!/bin/bash
 
-name=release
+prefix=${prefix:-release}
 dist=${dist:-dist}
 electronVersion=${electronVersion:-31.0.2}
 
@@ -17,7 +17,6 @@ fi
 if [ ! -f "$dist/package.json" ]; then
 cat << 'EOF' > "$dist/package.json"
 {
-  "name": "${NAME}",
   "main": "electron.js"
 }
 EOF
@@ -59,9 +58,9 @@ fi
 
 set -x
 
-npx @electron/packager $dist $name \
+npx @electron/packager $dist $prefix \
   --electron-version=$electronVersion \
   --platform $platform \
   --arch $arch
 
-chmod go+rx $name-$platform-$arch
+chmod go+rx $prefix-$platform-$arch
