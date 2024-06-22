@@ -31,3 +31,12 @@ The following action can be used to deploy a Void game to Steam
 
  * COMING SOON
 
+
+### Development
+
+For developing these packages, you can use bun (or npm) as a task runner
+
+```bash
+> bun install
+> bun run images   # build all docker images
+```
