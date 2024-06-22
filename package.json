@@ -2,9 +2,10 @@
   "name": "void-actions",
   "version": "0.0.1",
   "scripts": {
-    "images": "bun run image:build:web && bun run image:package:electron && bun run image:deploy:steam",
+    "images": "bun run image:build:web && bun run image:package:electron && bun run image:deploy:steam && bun run image:deploy:steam:login",
     "image:build:web": "docker build -t void/build/web -f build/web/Dockerfile build/web",
     "image:package:electron": "docker build -t void/package/electron -f package/electron/Dockerfile package/electron",
-    "image:deploy:steam": "docker build -t void/deploy/steam -f deploy/steam/Dockerfile deploy/steam"
+    "image:deploy:steam": "docker build -t void/deploy/steam -f deploy/steam/Dockerfile deploy/steam",
+    "image:deploy:steam:login": "docker build -t void/deploy/steam/login -f deploy/steam/Dockerfile deploy/steam/login"
   }
 }
