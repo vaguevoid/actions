@@ -67,6 +67,21 @@ cat << EOF >> "$manifestFile"
 EOF
 fi
 
+if [[ ! -z "$linuxDepotId" ]]; then
+echo "... including linux depot"
+cat << EOF >> "$manifestFile"
+    "$linuxDepotId"
+    {
+      "FileMapping"
+      {
+        "LocalPath" "./$executable-linux-x64/*"
+        "DepotPath" "."
+        "recursive" "1"
+      }
+    }
+EOF
+fi
+
 if [[ ! -z "$appleIntelDepotId" ]]; then
 echo "... including apple (intel) depot"
 cat << EOF >> "$manifestFile"
