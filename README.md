@@ -44,7 +44,7 @@ Assumptions
     - name: Deploy to Steam
       uses: vaguevoid/actions/deploy/steam@alpha
       with:
-        username: vaguevoidbot
+        username: vaguevoidcloud
         configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
 ```
 
