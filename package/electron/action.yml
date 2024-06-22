@@ -3,16 +3,24 @@ author: "Jake Gordon <jake@void.dev>"
 description: "Default Electron packager for Void games"
 inputs:
   dist:
+    description: "path to your bundled web game"
     required: true
     default: "dist"
+  electronVersion:
+    description: "version of electron to package the game"
+    required: true
+    default: "31.0.2"
   platform:
+    description: "target platform (win32 | linux | darwin)"
     required: true
   arch:
+    description: "target architecture (x64 | arm64)"
     required: true
 runs:
   using: "docker"
   image: "Dockerfile"
   env:
-    DIST: ${{ inputs.path }}
-    PLATFORM: ${{ inputs.platform }}
-    ARCH: ${{ inputs.arch }}
+    dist: ${{ inputs.dist }}
+    electronVersion: ${{ inputs.electronVersion }}
+    platform: ${{ inputs.platform }}
+    arch: ${{ inputs.arch }}

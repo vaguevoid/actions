@@ -96,7 +96,7 @@ echo "****************"
 echo "Test Steam Login"
 echo "****************"
 steamcmd +login "$username" +quit;
-result = $?
+result=$?
 
 if [ $result -ne 0 ]; then
   echo "Steam login failed"

@@ -1,22 +1,21 @@
 #!/bin/bash
-set -xeuo pipefail
 
-NAME=${NAME:-release}
-DIST=${DIST:-dist}
-ELECTRON_VERSION=${ELECTRON_VERSION:-31.0.2}
+name=release
+dist=${dist:-dist}
+electronVersion=${electronVersion:-31.0.2}
 
-if [[ -z "${PLATFORM}" ]]; then
-  echo "\$PLATFORM required"
+if [[ -z "$platform" ]]; then
+  echo "\$platform required"
   exit 1
 fi
 
-if [[ -z "${ARCH}" ]]; then
-  echo "\$ARCH required"
+if [[ -z "$arch" ]]; then
+  echo "\$arch required"
   exit 1
 fi
 
-if [ ! -f ${DIST}/package.json ]; then
-cat << 'EOF' > ${DIST}/package.json
+if [ ! -f "$dist/package.json" ]; then
+cat << 'EOF' > "$dist/package.json"
 {
   "name": "${NAME}",
   "main": "electron.js"
@@ -24,8 +23,8 @@ cat << 'EOF' > ${DIST}/package.json
 EOF
 fi
 
-if [ ! -f ${DIST}/electron.js ]; then
-cat << 'EOF' > ${DIST}/electron.js
+if [ ! -f "$dist/electron.js" ]; then
+cat << 'EOF' > "$dist/electron.js"
   const { app, BrowserWindow } = require("electron")
   const path = require("node:path")
 
@@ -58,9 +57,11 @@ cat << 'EOF' > ${DIST}/electron.js
 EOF
 fi
 
-npx @electron/packager ${DIST} ${NAME} \
-  --electron-version=${ELECTRON_VERSION} \
-  --platform ${PLATFORM} \
-  --arch ${ARCH}
+set -x
 
-chmod go+rx ${NAME}-${PLATFORM}-${ARCH}
+npx @electron/packager $dist $name \
+  --electron-version=$electronVersion \
+  --platform $platform \
+  --arch $arch
+
+chmod go+rx $name-$platform-$arch
