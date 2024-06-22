@@ -1,32 +1,35 @@
 #!/bin/bash
 
-set -x
+bundle=${bundle:-release/web}
+releasePath=${releasePath:-release}
+executable=${executable:-electron}
+electronVersion=${electronVersion:-31.0.2}
 
-NAME=${NAME:-release}
-DIST=${DIST:-dist}
-ELECTRON_VERSION=${ELECTRON_VERSION:-31.0.2}
-
-if [[ -z "${PLATFORM}" ]]; then
-  echo "\$PLATFORM required"
+if [[ -z "$platform" ]]; then
+  echo "platform required"
   exit 1
 fi
 
-if [[ -z "${ARCH}" ]]; then
-  echo "\$ARCH required"
+if [[ -z "$arch" ]]; then
+  echo "arch required"
   exit 1
 fi
 
-if [ ! -f ${DIST}/package.json ]; then
-cat << 'EOF' > ${DIST}/package.json
+if [ ! -d "$bundle" ]; then
+  echo "$bundle doesn't exist"
+  exit 1
+fi
+
+if [ ! -f "$bundle/package.json" ]; then
+cat << 'EOF' > "$bundle/package.json"
 {
-  "name": "${NAME}",
   "main": "electron.js"
 }
 EOF
 fi
 
-if [ ! -f ${DIST}/electron.js ]; then
-cat << 'EOF' > ${DIST}/electron.js
+if [ ! -f "$bundle/electron.js" ]; then
+cat << 'EOF' > "$bundle/electron.js"
   const { app, BrowserWindow } = require("electron")
   const path = require("node:path")
 
@@ -59,9 +62,14 @@ cat << 'EOF' > ${DIST}/electron.js
 EOF
 fi
 
-npx @electron/packager ${DIST} ${NAME} \
-  --electron-version=${ELECTRON_VERSION} \
-  --platform ${PLATFORM} \
-  --arch ${ARCH}
+set -x
 
-chmod go+rx ${NAME}-${PLATFORM}-${ARCH}
+mkdir -p $releasePath
+
+npx @electron/packager $bundle $executable \
+  --electron-version=$electronVersion \
+  --platform $platform \
+  --arch $arch \
+  --out $releasePath
+
+chmod go+rx $releasePath/$executable-$platform-$arch
