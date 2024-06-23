@@ -1,9 +1,9 @@
 #!/bin/bash
 
-releasePath=${releasePath:-release}
+releasePath=$(realpath "${releasePath:-release}")
 executable=${executable:-electron}
 buildDescription=${buildDescription:-a void game}
-manifestFile=${releasePath}/manifest.vdf
+manifestFile="$releasePath/manifest.vdf"
 
 steam_home=$HOME/.steam/steam
 config_dir=$steam_home/config
@@ -129,17 +129,15 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
-echo "************"
-echo "Upload Build"
-echo "************"
-echo ">>> TODO: run steamcmd upload here <<<"
+echo "**************************************************"
+echo "Upload Build for $username, manifest $manifestFile"
+echo "**************************************************"
+steamcmd +login "$username" +run_app_build "$manifestFile" +quit
+result = $?
 
-# steamcmd +login "$username" +run_app_build "$manifestFile" +quit
-# result = $?
-#
-# if [ $result -ne 0 ]; then
-#   echo "Steam upload failed"
-#   echo "Exit code: $result"
-#   echo ">>> TODO: display logs here <<<"
-#   exit $result
-# fi
+if [ $result -ne 0 ]; then
+  echo "Steam upload failed"
+  echo "Exit code: $result"
+  echo ">>> TODO: display logs here <<<"
+  exit $result
+fi
