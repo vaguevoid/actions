@@ -133,7 +133,7 @@ echo "**************************************************"
 echo "Upload Build for $username, manifest $manifestFile"
 echo "**************************************************"
 steamcmd +login "$username" +run_app_build "$manifestFile" +quit
-result = $?
+result=$?
 
 if [ $result -ne 0 ]; then
   echo "Steam upload failed"
