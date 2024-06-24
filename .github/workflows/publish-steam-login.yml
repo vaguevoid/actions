@@ -1,6 +1,10 @@
 name: Publish Steam Login Docker Image
 on:
   push:
+    branches:
+      - alpha
+    tags:
+      - 'v*'
 
 env:
   REGISTRY: ghcr.io
