@@ -33,7 +33,7 @@ runs:
   using: "composite"
   steps:
     - name: "Build"
-      uses: "vaguevoid/actions/build/web@alpha"
+      uses: "vaguevoid/actions/build/vite@alpha"
       with:
         output: ${{ inputs.releasePath }}/web
         baseUrl: ${{ inputs.baseUrl }}
