@@ -7,7 +7,11 @@ Assumptions
 
 ```yaml
   steps:
-    # ...
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Build
+      uses: vaguevoid/actions/build/vite@alpha
 
     - name: Package for Windows
       uses: vaguevoid/actions/package/electron@alpha

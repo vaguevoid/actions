@@ -4,14 +4,10 @@ bundle=${bundle:-release/web}
 releasePath=${releasePath:-release}
 executable=${executable:-electron}
 electronVersion=${electronVersion:-31.0.2}
+arch=${arch:x64}
 
 if [[ -z "$platform" ]]; then
   echo "platform required"
-  exit 1
-fi
-
-if [[ -z "$arch" ]]; then
-  echo "arch required"
   exit 1
 fi
 

@@ -4,15 +4,12 @@ description: "Default Electron packager for Void games"
 inputs:
   bundle:
     description: "path to your bundled web game"
-    required: true
     default: "release/web"
   releasePath:
     description: "directory for packaged releases"
     default: "release"
-    required: true
   executable:
     description: "executable file name prefix"
-    required: true
     default: "electron"
   platform:
     description: "target platform" 
@@ -24,14 +21,13 @@ inputs:
       - darwin
   arch:
     description: "target architecture"
-    required: true
     type: choice
     options:
       - x64
       - arm64
+    default: x64
   electronVersion:
     description: "version of electron"
-    required: true
     default: "31.0.2"
 runs:
   using: "docker"

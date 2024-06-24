@@ -5,11 +5,9 @@ inputs:
   output:
     description: "output directory for bundled web game"
     default: "release/web"
-    required: true
   baseUrl:
     description: "base URL"
     default: "./"
-    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
