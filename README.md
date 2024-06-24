@@ -6,7 +6,7 @@ The following high level composite actions are recommended
 
   * [Share on Steam](#share-on-steam) - Build, Package, and Deploy to Steam
 
-This high level action makes some simplifying assumptions. If they do not meet your needs
+The high level actions above make some simplifying assumptions. If they do not meet your needs
 you can drop down to the lower level actions below and combine them to build your
 own workflow steps:
 
@@ -17,7 +17,7 @@ own workflow steps:
 
 ## Share on Steam
 
-This action can be used to build, package, and deploy your Void game to Steam
+This [action](share/on/steam/action.yml) can be used to build, package, and deploy your Void game to Steam
 
 ```yaml
   steps:
@@ -33,6 +33,8 @@ This action can be used to build, package, and deploy your Void game to Steam
         linuxDepotId:     "xxxx"                          # the Steam Depot ID for your Linux binaries (if any)
         buildDescription: "latest and greatest"           # (optional) build description
 ```
+
+---
 
 ## Steam Authorization File (config.vdf)
 
