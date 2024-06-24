@@ -1,0 +1,83 @@
+name: "Share a Void game on Steam"
+author: "Jake Gordon <jake@void.dev>"
+description: "Build, Package, and Deploy a Void game to Steam"
+inputs:
+  buildDescription:
+    description: "Description for this build"
+  executable:
+    description: "executable file name prefix (not including extension)"
+    default: "void"
+  releasePath:
+    description: "path to packaged releases"
+    default: "release"
+  baseUrl:
+    description: "base URL"
+    default: "./"
+  username:
+    description: "Steam user name"
+    required: true
+  configVdf:
+    description: "A steamcmd authorization config.vdf file (base64 encoded)"
+    required: true
+  appId:
+    description: "Steam Application ID"
+    required: true
+  windowsDepotId:
+    description: "Steam Depot ID for Windows binaries"
+  macosDepotId:
+    description: "Steam Depot ID for MacOS binaries"
+  linuxDepotId:
+    description: "Steam Depot ID for Linux binaries"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Build"
+      uses: "vaguevoid/actions/build/web"
+      with:
+        output: ${{ inputs.releasePath }}/web
+        baseUrl: ${{ inputs.baseUrl }}
+
+    - name: "Package for Windows"
+      uses: "vaguevoid/actions/package/electron"
+      if: ${{ inputs.windowDepotId != '' }}
+      with:
+        bundle: ${{ inputs.releasePath }}/web
+        releasePath: ${{ inputs.releasePath }}
+        executable: ${{ inputs.executable }}
+        platform: win32
+        arch: x64
+
+    - name: "Package for MacOS"
+      uses: "vaguevoid/actions/package/electron"
+      if: ${{ inputs.macosDepotId != '' }}
+      with:
+        bundle: ${{ inputs.releasePath }}/web
+        releasePath: ${{ inputs.releasePath }}
+        executable: ${{ inputs.executable }}
+        platform: darwin
+        arch: x64
+
+    - name: "Package for Linux"
+      uses: "vaguevoid/actions/package/electron"
+      if: ${{ inputs.linuxDepotId != '' }}
+      with:
+        bundle: ${{ inputs.releasePath }}/web
+        releasePath: ${{ inputs.releasePath }}
+        executable: ${{ inputs.executable }}
+        platform: linux
+        arch: x64
+
+    - name: "Deploy"
+      uses: "vaguevoid/actions/deploy/steam"
+      with:
+        releasePath: ${{ inputs.releasePath }}
+        executable: ${{ inputs.executable }}
+        username: ${{ inputs.username }}
+        configVdf: ${{ inputs.configVdf }}
+        appId: ${{ inputs.appId }}
+        windowsDepotId: ${{ inputs.windowsDepotId }}
+        macosDepotId: ${{ inputs.macosDepotId }}
+        linuxDepotId: ${{ inputs.linuxDepotId }}
+        buildDescription: ${{ inputs.buildDescription }}
+
