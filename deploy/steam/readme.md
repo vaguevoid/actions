@@ -9,6 +9,8 @@ Assumptions
 
 ```yaml
   steps:
+    # ...
+
     - name: Deploy to Steam
       uses: vaguevoid/actions/deploy/steam@alpha
       with:

@@ -8,6 +8,8 @@ Assumptions:
 
 ```yaml
   steps:
+    # ...
+
     - name: Build
       uses: vaguevoid/actions/build/vite@alpha
       with:

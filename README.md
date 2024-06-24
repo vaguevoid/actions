@@ -14,6 +14,9 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
 
 ```yaml
   steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+    
     - name: Build, Package, and Deploy to Steam
       uses: vaguevoid/actions/share/on/steam@alpha
       with:

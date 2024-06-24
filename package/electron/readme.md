@@ -7,6 +7,8 @@ Assumptions
 
 ```yaml
   steps:
+    # ...
+
     - name: Package for Windows
       uses: vaguevoid/actions/package/electron@alpha
       with:
