@@ -47,7 +47,7 @@ upload a new secret every 30 days.
 From your terminal:
 
 ```bash
-> docker run -it ghcr.io/vaguevoid/steam/login [USERNAME]
+> docker run -it -v .:/out ghcr.io/vaguevoid/steam/login [USERNAME]
 
 Steam> Enter you password:
 Steam> Enter your Steam Guard code:
