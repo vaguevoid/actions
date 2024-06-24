@@ -33,13 +33,13 @@ runs:
   using: "composite"
   steps:
     - name: "Build"
-      uses: "vaguevoid/actions/build/web"
+      uses: "vaguevoid/actions/build/web@alpha"
       with:
         output: ${{ inputs.releasePath }}/web
         baseUrl: ${{ inputs.baseUrl }}
 
     - name: "Package for Windows"
-      uses: "vaguevoid/actions/package/electron"
+      uses: "vaguevoid/actions/package/electron@alpha"
       if: ${{ inputs.windowDepotId != '' }}
       with:
         bundle: ${{ inputs.releasePath }}/web
@@ -49,7 +49,7 @@ runs:
         arch: x64
 
     - name: "Package for MacOS"
-      uses: "vaguevoid/actions/package/electron"
+      uses: "vaguevoid/actions/package/electron@alpha"
       if: ${{ inputs.macosDepotId != '' }}
       with:
         bundle: ${{ inputs.releasePath }}/web
@@ -59,7 +59,7 @@ runs:
         arch: x64
 
     - name: "Package for Linux"
-      uses: "vaguevoid/actions/package/electron"
+      uses: "vaguevoid/actions/package/electron@alpha"
       if: ${{ inputs.linuxDepotId != '' }}
       with:
         bundle: ${{ inputs.releasePath }}/web
@@ -69,7 +69,7 @@ runs:
         arch: x64
 
     - name: "Deploy"
-      uses: "vaguevoid/actions/deploy/steam"
+      uses: "vaguevoid/actions/deploy/steam@alpha"
       with:
         releasePath: ${{ inputs.releasePath }}
         executable: ${{ inputs.executable }}
