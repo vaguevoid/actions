@@ -1,4 +1,4 @@
-# Deploy with Steam
+# Deploy to Steam
 
 This action can be used to deploy a Void game to Steam
 
