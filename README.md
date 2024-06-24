@@ -4,16 +4,9 @@ This public repository contains GitHub actions for use with the [Void](https://v
 
 The following high level composite actions are recommended
 
-  * [Share on Steam](#share-on-steam) - Build, Package, and Deploy to Steam
-
-The high level actions above make some simplifying assumptions. If they do not meet your needs
-you can drop down to the lower level actions below and combine them to build your
-own workflow steps:
-
-  * [Build with Vite](build/vite/readme.md) - Build for the web using Vite
-  * [Package with Electron](package/electron/readme.md) - Package existing web build using Electron
-  * [Deploy to Steam](deploy/steam/readme.md) - Deploy existing packaged game to Steam
-
+  * **Share on Steam** - Build, Package, and Deploy to Steam
+  * **Share on Discord** - Build, Package, and Deploy to Discord
+  * _...more to come_
 
 ## Share on Steam
 
@@ -35,9 +28,7 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
         buildDescription: "latest and greatest"           # a build description (optional)
 ```
 
----
-
-## Steam Authorization File (config.vdf)
+### Steam Authorization File (config.vdf)
 
 For actions that deploy to steam you will need to provide a `configVdf` configuration file generated
 by the `steamcmd +login` action. To generate this file you can use the `ghcr.io/vaguevoid/steam/login`
@@ -56,9 +47,23 @@ Steam> Enter your Steam Guard code:
 > cat ./config.vdf    # copy the contents of this file to your `STEAM_CONFIG_VDF` GitHub secret
 ```
 
-> NOTE: the `vaguevoid/steam/login` docker image is currently private, and you will need
-to (a) ask Jake to add you as a user
-and (b) perform a [docker login with a GitHub personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic)
+**NOTE**: the `vaguevoid/steam/login` docker image is currently private, and you will need
+to (a) ask Jake to add you as a user and (b) perform a [docker login with a GitHub personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic)
+
+## Share on Discord
+
+> coming soon
+
+## Other Actions
+
+The high level share actions above make many simplifying assumptions. If they do not meet your needs
+you can drop down to the lower level actions below and combine them to build your
+own workflow steps:
+
+  * [Build with Vite](build/vite/readme.md) - Build for the web using Vite
+  * [Package with Electron](package/electron/readme.md) - Package existing web build using Electron
+  * [Deploy to Steam](deploy/steam/readme.md) - Deploy existing packaged game to Steam
+  * _...more to come_
 
 ---
 
