@@ -13,6 +13,7 @@ The following high level composite actions are recommended
 This [action](share/on/steam/action.yml) can be used to build, package, and deploy your Void game to Steam
 
 ```yaml
+  runs-on: ubuntu-latest
   steps:
     - name: Checkout Repo
       uses: actions/checkout@v4
