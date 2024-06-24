@@ -22,14 +22,11 @@ inputs:
   windowsDepotId:
     description: "A Steam Depot ID to contain your Windows executable"
     required: false
+  macosDepotId:
+    description: "A Steam Depot ID to contain your MacOS excutable"
+    required: false
   linuxDepotId:
     description: "A Steam Depot ID to contain your Linux executable"
-    required: false
-  appleIntelDepotId:
-    description: "A Steam Depot ID to contain your Apple (Intel) excutable"
-    required: false
-  appleArmDepotId:
-    description: "A Steam Depot ID to contain your Apple (ARM) executable"
     required: false
   buildDescription:
     description: "Description for this build"
@@ -44,7 +41,6 @@ runs:
     configVdf: ${{ inputs.configVdf }}
     appId: ${{ inputs.appId }}
     windowsDepotId: ${{ inputs.windowsDepotId }}
+    macosDepotId: ${{ inputs.macosDepotId }}
     linuxDepotId: ${{ inputs.linuxDepotId }}
-    appleIntelDepotId: ${{ inputs.appleIntelDepotId }}
-    appleArmDepotId: ${{ inputs.appleArmDepotId }}
     buildDescription: ${{ inputs.buildDescription }}
