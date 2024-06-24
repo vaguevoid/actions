@@ -25,13 +25,14 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
       uses: vaguevoid/actions/share/on/steam@alpha
       with:
         executable:       "my-game"                       # name (without extension) to use for generated executables
-        username:         gordonja                        # Steam username
-        configVdf:        ${{ secrets.STEAM_CONFIG_VDF }} # Saved Steam login session (see below)
-        appId:            "xxxx"                          # your Steam Application ID
+        username:         gordonja                        # your Steam username
+        configVdf:        ${{ secrets.STEAM_CONFIG_VDF }} # a Saved Steam login session (see below)
+        appId:            "xxxx"                          # the Steam Application ID
         windowsDepotId:   "xxxx"                          # the Steam Depot ID for your Windows binaries
-        macosDepotId:     "xxxx"                          # the Steam Depot ID for your MacOS binaries (if any)
-        linuxDepotId:     "xxxx"                          # the Steam Depot ID for your Linux binaries (if any)
-        buildDescription: "latest and greatest"           # (optional) build description
+        macosDepotId:     "xxxx"                          # the Steam Depot ID for your MacOS binaries (optional)
+        linuxDepotId:     "xxxx"                          # the Steam Depot ID for your Linux binaries (optional)
+        setLiveBranch:    "beta"                          # the Steam branch to set live with this build (optional)
+        buildDescription: "latest and greatest"           # a build description (optional)
 ```
 
 ---

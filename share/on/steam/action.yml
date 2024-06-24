@@ -28,6 +28,8 @@ inputs:
     description: "Steam Depot ID for MacOS binaries"
   linuxDepotId:
     description: "Steam Depot ID for Linux binaries"
+  setLiveBranch:
+    description: "A custom Steam branch to set live with this build ('default' not allowed)"
 
 runs:
   using: "composite"
@@ -71,13 +73,14 @@ runs:
     - name: "Deploy"
       uses: "vaguevoid/actions/deploy/steam@alpha"
       with:
-        releasePath: ${{ inputs.releasePath }}
+        buildDescription: ${{ inputs.buildDescription }}
         executable: ${{ inputs.executable }}
+        releasePath: ${{ inputs.releasePath }}
         username: ${{ inputs.username }}
         configVdf: ${{ inputs.configVdf }}
         appId: ${{ inputs.appId }}
         windowsDepotId: ${{ inputs.windowsDepotId }}
         macosDepotId: ${{ inputs.macosDepotId }}
         linuxDepotId: ${{ inputs.linuxDepotId }}
-        buildDescription: ${{ inputs.buildDescription }}
+        setLiveBranch: ${{ inputs.setLiveBranch }}
 

@@ -48,6 +48,15 @@ cat << EOF > "$manifestFile"
   "Desc" "$buildDescription"
   "ContentRoot" "$releasePath"
   "BuildOutput" "$releasePath"
+EOF
+
+if [[ ! -z "$setLiveBranch" ]]; then
+cat << EOF >> "$manifestFile"
+  "SetLive" "$setLiveBranch"
+EOF
+fi
+
+cat << EOF >> "$manifestFile"
   "Depots"
   {
 EOF
@@ -68,7 +77,7 @@ EOF
 fi
 
 if [[ ! -z "$macosDepotId" ]]; then
-echo "... including apple (intel) depot"
+echo "... including macos depot"
 cat << EOF >> "$manifestFile"
     "$macosDepotId"
     {
