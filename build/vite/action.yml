@@ -1,6 +1,6 @@
-name: "Void Build Web"
+name: "Void Build Vite"
 author: "Jake Gordon <jake@void.dev>"
-description: "Default web builder for Void games"
+description: "Default web builder for Void games using Vite"
 inputs:
   output:
     description: "output directory for bundled web game"
