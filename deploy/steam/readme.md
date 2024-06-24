@@ -17,8 +17,9 @@ Assumptions
         username:          gordonja                        # Steam username
         configVdf:         ${{ secrets.STEAM_CONFIG_VDF }} # Saved Steam login session (see below)
         appId:             "xxxx"                          # your Steam Application ID
-        windowsDepotId:    "xxxx"                          # the Steam Depot ID for your win32-x64 binaries (if any)
-        macosDepotId:      "xxxx"                          # the Steam Depot ID for your darwin-x64 binaries (if any)
-        linuxDepotId:      "xxxx"                          # the Steam Depot ID for your linux-x64 binaries (if any)
-        buildDescription:  "latest beta test"              # (optional) build description
+        windowsDepotId:    "xxxx"                          # the Steam Depot ID for your win32-x64 binaries
+        macosDepotId:      "xxxx"                          # the Steam Depot ID for your darwin-x64 binaries (optional)
+        linuxDepotId:      "xxxx"                          # the Steam Depot ID for your linux-x64 binaries (optional)
+        setLiveBranch:     "beta"                          # the Steam branch to set live with this build (optional)
+        buildDescription:  "latest beta test"              # a build description (optional)
 ```

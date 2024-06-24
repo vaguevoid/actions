@@ -31,6 +31,7 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
         windowsDepotId:   "xxxx"                          # the Steam Depot ID for your Windows binaries
         macosDepotId:     "xxxx"                          # the Steam Depot ID for your MacOS binaries (if any)
         linuxDepotId:     "xxxx"                          # the Steam Depot ID for your Linux binaries (if any)
+        setLiveBranch:    "beta"                          # (optional) Steam branch to set live with this build (if any)
         buildDescription: "latest and greatest"           # (optional) build description
 ```
 
