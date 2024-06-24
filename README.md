@@ -55,6 +55,10 @@ Steam> Enter your Steam Guard code:
 > cat ./config.vdf    # copy the contents of this file to your `STEAM_CONFIG_VDF` GitHub secret
 ```
 
+> NOTE: the `vaguevoid/steam/login` docker image is currently private, and you will need
+to (a) ask Jake to add you as a user
+and (b) perform a [docker login with a GitHub personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic)
+
 ---
 
 ### Development
