@@ -5,8 +5,8 @@ executable=${executable:-electron}
 buildDescription=${buildDescription:-a void game}
 manifestFile="$releasePath/manifest.vdf"
 
-steam_home=$HOME/.steam/steam
-config_dir=$steam_home/config
+steamdir=$HOME/.steam/steam
+config_dir=$steamdir/config
 config_file=$config_dir/config.vdf
 
 if [[ -z "$configVdf" ]]; then
@@ -123,6 +123,10 @@ result=$?
 if [ $result -ne 0 ]; then
   echo "Steam upload failed"
   echo "Exit code: $result"
-  echo ">>> TODO: display logs here <<<"
+  for f in $releasePath/*.log; do
+    echo "######## $f"
+    cat "$f"
+    echo
+  done
   exit $result
 fi
