@@ -59,9 +59,8 @@ Assumptions
         configVdf:         ${{ secrets.STEAM_CONFIG_VDF }} # Saved Steam login session (see below)
         appId:             "xxxx"                          # your Steam Application ID
         windowsDepotId:    "xxxx"                          # the Steam Depot ID for your win32-x64 binaries (if any)
+        macosDepotId:      "xxxx"                          # the Steam Depot ID for your darwin-x64 binaries (if any)
         linuxDepotId:      "xxxx"                          # the Steam Depot ID for your linux-x64 binaries (if any)
-        appleIntelDepotId: "xxxx"                          # the Steam Depot ID for your darwin-x64 binaries (if any)
-        appleArmDepotId:   "xxxx"                          # the Steam Depot ID for your darwin-arm64 binaries (if any)
         buildDescription:  "latest beta test"              # (optional) build description
 ```
 

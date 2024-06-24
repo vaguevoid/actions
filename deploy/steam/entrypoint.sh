@@ -67,25 +67,10 @@ cat << EOF >> "$manifestFile"
 EOF
 fi
 
-if [[ ! -z "$linuxDepotId" ]]; then
-echo "... including linux depot"
-cat << EOF >> "$manifestFile"
-    "$linuxDepotId"
-    {
-      "FileMapping"
-      {
-        "LocalPath" "./$executable-linux-x64/*"
-        "DepotPath" "."
-        "recursive" "1"
-      }
-    }
-EOF
-fi
-
-if [[ ! -z "$appleIntelDepotId" ]]; then
+if [[ ! -z "$macosDepotId" ]]; then
 echo "... including apple (intel) depot"
 cat << EOF >> "$manifestFile"
-    "$appleIntelDepotId"
+    "$macosDepotId"
     {
       "FileMapping"
       {
@@ -97,14 +82,14 @@ cat << EOF >> "$manifestFile"
 EOF
 fi
 
-if [[ ! -z "$appleArmDepotId" ]]; then
-echo "... including apple (arm) depot"
+if [[ ! -z "$linuxDepotId" ]]; then
+echo "... including linux depot"
 cat << EOF >> "$manifestFile"
-    "$appleArmDepotId"
+    "$linuxDepotId"
     {
       "FileMapping"
       {
-        "LocalPath" "./$executable-darwin-arm64/*"
+        "LocalPath" "./$executable-linux-x64/*"
         "DepotPath" "."
         "recursive" "1"
       }
