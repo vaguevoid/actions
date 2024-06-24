@@ -2,10 +2,10 @@
   "name": "void-actions",
   "version": "0.0.1",
   "scripts": {
-    "images": "bun run image:build:vite && bun run image:package:electron && bun run image:deploy:steam && bun run image:deploy:steam:login",
-    "image:build:vite": "docker build -t void/build/vite -f build/vite/Dockerfile build/vite",
-    "image:package:electron": "docker build -t void/package/electron -f package/electron/Dockerfile package/electron",
-    "image:deploy:steam": "docker build -t void/deploy/steam -f deploy/steam/Dockerfile deploy/steam",
-    "image:deploy:steam:login": "docker build -t void/deploy/steam/login -f deploy/steam/Dockerfile deploy/steam/login"
+    "images": "bun run image:build:vite && bun run image:package:electron && bun run image:deploy:steam && bun run image:steam:login",
+    "image:build:vite": "docker build -t ghcr.io/vaguevoid/build/vite -f build/vite/Dockerfile build/vite",
+    "image:package:electron": "docker build -t ghcr.io/vaguevoid/package/electron -f package/electron/Dockerfile package/electron",
+    "image:deploy:steam": "docker build -t ghcr.io/vaguevoid/deploy/steam -f deploy/steam/Dockerfile deploy/steam",
+    "image:steam:login": "docker build -t ghcr.io/vaguevoid/steam/login -f deploy/steam/Dockerfile deploy/steam/login"
   }
 }

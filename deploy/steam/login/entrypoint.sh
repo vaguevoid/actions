@@ -1,9 +1,8 @@
 #!/bin/bash
-set -euo pipefail
 
-STEAM_HOME=${STEAM_HOME:-$HOME/.steam/steam}
-STEAM_CONFIG_DIR=${STEAM_HOME}/config
-STEAM_CONFIG_FILE=${STEAM_CONFIG_DIR}/config.vdf
+steamHome=$HOME/.steam/steam
+steamConfigDir=$steamHome/config
+steamConfigFile=$steamConfigDir/config.vdf
 
 usage () {
 cat << 'EOF'
@@ -23,10 +22,10 @@ if [[ -z $1 ]]; then
   exit 1
 fi
 
-OUTPUT=${OUTPUT:-/out}
-if [ ! -d ${OUTPUT} ]; then
+out=${out:-/out}
+if [ ! -d $out ]; then
   echo "ERROR: missing output directory"
-  echo "...don't forget to mount ${OUTPUT} volume so we can save config.vdf for you. Try -v .:${OUTPUT}"
+  echo "...don't forget to mount $out volume so we can save config.vdf for you. Try -v .:$out"
   usage
   exit 1
 fi
@@ -37,6 +36,6 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-cat "${STEAM_CONFIG_FILE}" | base64 > "${OUTPUT}/config.vdf"
-echo "config.vdf has been saved to your output directory"
+cat "$steamConfigFile" | base64 > "$out/config.vdf"
+echo "config.vdf has been saved"
 exit 0

@@ -39,7 +39,7 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
 ## Steam Authorization File (config.vdf)
 
 For actions that deploy to steam you will need to provide a `configVdf` configuration file generated
-by the `steamcmd +login` action. To generate this file you can use the `vaguevoid/actions/deploy/steam/login`
+by the `steamcmd +login` action. To generate this file you can use the `ghcr.io/vaguevoid/steam/login`
 Docker image from your local development machine to generate a `config.vdf` file which you can then
 copy into a `STEAM_CONFIG_VDF` GitHub actions secret. You may have to manually regenerate and
 upload a new secret every 30 days.
@@ -47,7 +47,7 @@ upload a new secret every 30 days.
 From your terminal:
 
 ```bash
-> docker run -it vaguevoid/actions/deploy/steam/login [USERNAME]
+> docker run -it ghcr.io/vaguevoid/steam/login [USERNAME]
 
 Steam> Enter you password:
 Steam> Enter your Steam Guard code:
