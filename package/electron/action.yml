@@ -12,7 +12,7 @@ inputs:
     description: "executable file name prefix"
     default: "electron"
   platform:
-    description: "target platform" 
+    description: "target platform (win32 | darwin | linux)" 
     required: true
     type: choice
     options:
@@ -20,12 +20,13 @@ inputs:
       - linux
       - darwin
   arch:
-    description: "target architecture"
+    description: "target architecture (x64 | arm64)"
+    required: true
     type: choice
     options:
       - x64
       - arm64
-    default: x64
+    default: "x64"
   electronVersion:
     description: "version of electron"
     default: "31.0.2"
