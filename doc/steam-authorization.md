@@ -13,26 +13,33 @@ provided via a GitHub secret
   configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
 ```
 
-There are 2 options for generating the `config.vdf` file that you will need to copy into the
-GitHub secret
+There are 2 options for generating the `config.vdf` file:
 
   * **via Docker** - we provide a docker container that makes it easy to run the `steamcmd` to generate the file
   * **via steamcmd directly** - if you prefer you can follow the instructions below to use `steamcmd` directly
 
 ## Generating the secret via Docker
 
-If you have Docker installed, the easiest way to generate the `config.vdf` file is to use
-the [vaguevoid/steam-login](https://hub.docker.com/r/vaguevoid/steam-login)
+If you have Docker installed ([instructions](https://docs.docker.com/get-docker/)), the easiest
+way to generate the `config.vdf` file is to use the [vaguevoid/steam-login](https://hub.docker.com/r/vaguevoid/steam-login)
 Docker image from your terminal:
 
 ```bash
 > docker run -it -v .:/out vaguevoid/steam-login [USERNAME]
 
-Steam> Enter you password:
-Steam> Enter your Steam Guard code:
+Loading Steam API...OK
+Logging in user 'username' to Steam Public...
+password: **********                                # <----- ENTER YOUR PASSWORD
+Enter the current code from your Steam Guard app
+Two-factor code: *****                              # <----- ENTER YOUR STEAM GUARD CODE HERE
 
 > cat ./config.vdf    # copy the contents of this file as your `STEAM_CONFIG_VDF` GitHub secret
 ```
+
+The Two-factor-code that you will be asked for depends on your MFA setup:
+  * **via email** - code will be sent via email,  copy it into the terminal
+  * **via mobile app** - launch the Steam app on your phone but instead of scanning a QR code you
+    will click the "show steam guard code" button instead - copy the code to your terminal.
 
 ## Generating the secret via steamcmd directly
 
@@ -56,13 +63,10 @@ Once installed, you can use `steamcmd` to perform a manual login
 ```bash
 > steamcmd +login [USERNAME] +quit                  # REPLACE [USERNAME] WITH YOUR STEAM USERNAME
 
-# <SNIP loading output>...
 Loading Steam API...OK
-
 Logging in user 'username' to Steam Public...
 password: **********                                # <----- ENTER YOUR PASSWORD
-
-Enter the current code from your Steam Guard Mobile Authenticator app
+Enter the current code from your Steam Guard app
 Two-factor code: *****                              # <----- ENTER YOUR STEAM GUARD CODE HERE
 OK
 ```
