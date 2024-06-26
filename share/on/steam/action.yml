@@ -42,7 +42,7 @@ runs:
 
     - name: "Package for Windows"
       uses: "vaguevoid/actions/package/electron@alpha"
-      if: ${{ inputs.windowDepotId != '' }}
+      if: ${{ inputs.windowsDepotId != '' }}
       with:
         bundle: ${{ inputs.releasePath }}/web
         releasePath: ${{ inputs.releasePath }}
