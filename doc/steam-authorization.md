@@ -48,9 +48,9 @@ image, you can download the [latest Steam SDK from here](https://partner.steamga
 and once downloaded, you will find the `steamcmd` executable for your platform in one
 of the following locations
 
-  * **Windows**: sdk/tools/ContentBuilder/builder/steamcmd.exe
-  * **MacOS**: sdk/tools/ContentBuilder/builder_osx/steamcmd
-  * **Linux**: sdk/tools/ContentBuilder/builder_linux/linux32/steamcmd
+  * **Windows**: `sdk/tools/ContentBuilder/builder/steamcmd.exe`
+  * **MacOS**: `sdk/tools/ContentBuilder/builder_osx/steamcmd`
+  * **Linux**: `sdk/tools/ContentBuilder/builder_linux/linux32/steamcmd`
 
 You will need to ensure that `steamcmd` is executable:
 
