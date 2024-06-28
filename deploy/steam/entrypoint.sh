@@ -132,10 +132,29 @@ result=$?
 if [ $result -ne 0 ]; then
   echo "Steam upload failed"
   echo "Exit code: $result"
-  for f in $releasePath/*.log; do
+
+  echo ""
+  echo "Displaying error log"
+  echo ""
+  cat "$steamdir/logs/stderr.txt"
+  echo ""
+  echo "Displaying bootstrapper log"
+  echo ""
+  cat "$steamdir/logs/bootstrap_log.txt"
+
+  for f in "$steamdir"/logs/*; do
+    if [ -e "$f" ]; then
+      echo "######## $f"
+      cat "$f"
+      echo
+    fi
+  done
+
+  for f in "$releasePath"/*.log; do
     echo "######## $f"
     cat "$f"
     echo
   done
+
   exit $result
 fi
