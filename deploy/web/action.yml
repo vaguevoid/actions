@@ -11,14 +11,14 @@ inputs:
     default: "release/web"
     required: true
   organization:
-    description: "a play.void.dev organization name"
+    description: "your play.void.dev organization name"
     required: true
   game:
-    description: "a play.void.dev game name"
+    description: "your play.void.dev game name"
     required: true
   label:
-    description: "a build label"
-    required: true
+    description: "(optional) build label - branch name will be used by default"
+    required: false
   token:
     description: "your Void personal access token"
     required: true

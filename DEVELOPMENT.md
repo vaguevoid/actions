@@ -19,3 +19,7 @@ E.g.
 ```bash
 > docker run -it -e [ENV] -v .:/workspace -w /workspace [IMAGE] [ARGS]
 ```
+
+## TODO
+
+  * publish docker images instead of building them on eveyr action

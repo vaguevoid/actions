@@ -2,24 +2,33 @@ name: "Share a Void game on the web at play.void.dev"
 author: "Jake Gordon <jake@void.dev>"
 description: "Build, Package, and Deploy a Void game to the Web"
 inputs:
+  host:
+    description: "web host url"
+    default: "https://play.void.dev/"
+    required: true
   organization:
     description: "your play.void.dev organization name"
+    required: true
   game:
     description: "your play.void.dev game name"
+    required: true
   label:
-    description: "build label"
+    description: "(optional) build label - branch name will be used by default"
+    required: false
   token:
     description: "your Void personal access token"
+    required: true
   password:
     description: "(optional) password protect your shared game"
+    required: false
   baseUrl:
     description: "base URL"
+    required: true
     default: "./"
   releasePath:
     description: "release folder for build assets"
+    required: true
     default: "release"
-  host:
-    default: "https://play.void.dev/"
 
 runs:
   using: "composite"
@@ -30,6 +39,10 @@ runs:
         output: ${{ inputs.releasePath }}/web
         baseUrl: ${{ inputs.baseUrl }}
 
+    - name: Get default deploy label
+      uses: vaguevoid/actions/deploy/label@alpha
+      id: default_label
+
     - name: "Deploy"
       uses: "vaguevoid/actions/deploy/web@alpha"
       with:
@@ -37,6 +50,6 @@ runs:
         host: ${{ inputs.host }}
         organization: ${{ inputs.organization }}
         game: ${{ inputs.game }}
-        label: ${{ inputs.label }}
+        label: ${{ inputs.label || steps.default_label.output.label }}
         token: ${{ inputs.token }}
         password: ${{ inputs.password }}
