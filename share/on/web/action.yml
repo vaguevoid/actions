@@ -1,0 +1,42 @@
+name: "Share a Void game on the web at play.void.dev"
+author: "Jake Gordon <jake@void.dev>"
+description: "Build, Package, and Deploy a Void game to the Web"
+inputs:
+  organization:
+    description: "your play.void.dev organization name"
+  game:
+    description: "your play.void.dev game name"
+  label:
+    description: "build label"
+  token:
+    description: "your Void personal access token"
+  password:
+    description: "(optional) password protect your shared game"
+  baseUrl:
+    description: "base URL"
+    default: "./"
+  releasePath:
+    description: "release folder for build assets"
+    default: "release"
+  host:
+    default: "https://play.void.dev/"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Build"
+      uses: "vaguevoid/actions/build/vite@alpha"
+      with:
+        output: ${{ inputs.releasePath }}/web
+        baseUrl: ${{ inputs.baseUrl }}
+
+    - name: "Deploy"
+      uses: "vaguevoid/actions/deploy/web@alpha"
+      with:
+        path: ${{ inputs.releasePath }}/web
+        host: ${{ inputs.host }}
+        organization: ${{ inputs.organization }}
+        game: ${{ inputs.game }}
+        label: ${{ inputs.label }}
+        token: ${{ inputs.token }}
+        password: ${{ inputs.password }}

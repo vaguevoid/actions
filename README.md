@@ -4,9 +4,29 @@ This public repository contains GitHub actions for use with the [Void](https://v
 
 The following high level composite actions are recommended
 
+  * **Share on Web** - Build, Package, and Deploy to the Web on https://play.void.dev/
   * **Share on Steam** - Build, Package, and Deploy to Steam
   * **Share on Discord** - Build, Package, and Deploy to Discord
   * _...more to come_
+
+## Share on Web
+
+This [action](share/on/web/action.yml) can be used to build and share your game on https://play.void.dev/
+
+```yaml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Build, Package, and Deploy to Web
+        uses: vaguevoid/actions/share/on/web@alpha
+        with:
+          label:        "latest"                          # label your deploy
+          organization: "acme"                            # your play.void.dev organization name
+          game:         "pong"                            # your play.void.dev game name
+          token:        ${{ secrets.VOID_ACCESS_TOKEN }}  # your play.void.dev personal access token
+```
 
 ## Share on Steam
 
@@ -48,5 +68,6 @@ own workflow steps:
 
   * [Build with Vite](build/vite/readme.md) - Build for the web using Vite
   * [Package with Electron](package/electron/readme.md) - Package existing web build using Electron
+  * [Deploy to Web](deploy/web/readme.md) - Deploy existing built game to the Web at https://play.void.dev
   * [Deploy to Steam](deploy/steam/readme.md) - Deploy existing packaged game to Steam
   * _...more to come_

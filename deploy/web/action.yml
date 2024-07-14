@@ -1,0 +1,40 @@
+name: "Void Deploy to Web"
+author: "Jake Gordon <jake@void.dev>"
+description: "Deploy Void game to the Web at play.void.dev"
+inputs:
+  host:
+    description: "web host url"
+    default: "https://play.void.dev/"
+    required: true
+  path:
+    description: "path to built game assets"
+    default: "release/web"
+    required: true
+  organization:
+    description: "a play.void.dev organization name"
+    required: true
+  game:
+    description: "a play.void.dev game name"
+    required: true
+  label:
+    description: "a build label"
+    required: true
+  token:
+    description: "your Void personal access token"
+    required: true
+  password:
+    description: "(optional) password protect your shared game"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    host: ${{ inputs.host }}
+    path: ${{ inputs.path }}
+    organization: ${{ inputs.organization }}
+    game: ${{ inputs.game }}
+    label: ${{ inputs.label }}
+    token: ${{ inputs.token }}
+    password: ${{ inputs.password }}
+
