@@ -70,4 +70,5 @@ own workflow steps:
   * [Package with Electron](package/electron/readme.md) - Package existing web build using Electron
   * [Deploy to Web](deploy/web/readme.md) - Deploy existing built game to the Web at https://play.void.dev
   * [Deploy to Steam](deploy/steam/readme.md) - Deploy existing packaged game to Steam
+  * [Deploy Label](deploy/label/action.yml) - Extract a suitable deploy label from the GitHub branch name
   * _...more to come_
