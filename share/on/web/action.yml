@@ -50,6 +50,6 @@ runs:
         host: ${{ inputs.host }}
         organization: ${{ inputs.organization }}
         game: ${{ inputs.game }}
-        label: ${{ inputs.label || steps.default_label.output.label }}
+        label: ${{ inputs.label || steps.default_label.outputs.label }}
         token: ${{ inputs.token }}
         password: ${{ inputs.password }}
