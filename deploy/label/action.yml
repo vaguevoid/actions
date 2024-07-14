@@ -1,0 +1,15 @@
+name: "Extract deploy label"
+author: "Jake Gordon <jake@void.dev>"
+description: "Extract a deploy label from the GitHub branch name"
+outputs:
+  label:
+    description: "Deploy label"
+    value: ${{ steps.extract_label.outputs.label }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Extract label
+      shell: bash
+      run: echo "label=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" | sed 's/[^a-zA-Z\d=]/-/g' >> $GITHUB_OUTPUT
+      id: extract_label
