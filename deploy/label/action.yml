@@ -11,5 +11,5 @@ runs:
   steps:
     - name: Extract label
       shell: bash
-      run: echo "label=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" | sed 's/[^a-zA-Z\d=]/-/g' >> $GITHUB_OUTPUT
+      run: echo "label=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
       id: extract_label

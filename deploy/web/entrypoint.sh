@@ -5,7 +5,7 @@ path="${path:-release/web}"
 bundle="$(dirname "${path}")/web.tgz"
 organization="${organization}"
 game="${game}"
-label="${label}"
+label=$(echo "$label" | sed 's/[^a-zA-Z\d=]/-/g')
 token="${token}"
 password="${password}"
 endpoint="${host}api/${organization}/${game}/share/${label}"
