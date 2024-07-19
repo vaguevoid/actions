@@ -18,4 +18,4 @@ runs:
   env:
     output: ${{ inputs.output }}
     baseUrl: ${{ inputs.baseUrl }}
-    VITE_DEPLOY_TARGET: ${{ inputs.deployTarget }}
+    deployTarget: ${{ inputs.deployTarget }}
