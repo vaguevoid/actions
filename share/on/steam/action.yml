@@ -30,6 +30,8 @@ inputs:
     description: "Steam Depot ID for Linux binaries"
   setLiveBranch:
     description: "A custom Steam branch to set live with this build ('default' not allowed)"
+  pngCompressor:
+    description: "(optional) command line arguments to pass to png_compressor"
 
 runs:
   using: "composite"
@@ -39,6 +41,12 @@ runs:
       with:
         output: ${{ inputs.releasePath }}/web
         baseUrl: ${{ inputs.baseUrl }}
+
+    - name: "Build - Compress Textures"
+      uses: "vaguevoid/actions/build/png_compressor@alpha"
+      if: ${{ inputs.pngCompressor != '' }}
+      with:
+        args: ${{ inputs.pngCompressor }}
 
     - name: "Package for Windows"
       uses: "vaguevoid/actions/package/electron@alpha"
