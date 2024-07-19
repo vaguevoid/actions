@@ -8,9 +8,14 @@ inputs:
   baseUrl:
     description: "base URL"
     default: "./"
+  deployTarget:
+    description: "(optional) set VITE_DEPLOY_TARGET if you require conditional code based on import.meta.env.VITE_DEPLOY_TARGET"
+    required: false
+    default: "web"
 runs:
   using: "docker"
   image: "Dockerfile"
   env:
     output: ${{ inputs.output }}
     baseUrl: ${{ inputs.baseUrl }}
+    deployTarget: ${{ inputs.deployTarget }}

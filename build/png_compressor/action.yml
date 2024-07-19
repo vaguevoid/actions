@@ -1,0 +1,12 @@
+name: "Void Png Compressor"
+author: "Jake Gordon <jake@void.dev>"
+description: "Compress .png textures to WebGPU optimized .dxt format"
+inputs:
+  args:
+    description: "arguments to png_compressor (-d /path/to/assets -i ignore.png")
+    required: true
+runs:
+  using: "docker"
+  image: "docker://vaguevoid/png_compressor:latest"
+  args:
+    - ${{ inputs.args }}

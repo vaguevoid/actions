@@ -50,6 +50,7 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
         linuxDepotId:     "xxxx"                          # the Steam Depot ID for your Linux binaries (optional)
         setLiveBranch:    "beta"                          # the Steam branch to set live with this build (optional)
         buildDescription: "latest and greatest"           # a build description (optional)
+        pngCompressor:    "-d release/web -i favicon.png" # arguments for png_compressor (optional)
 ```
 
 For actions that deploy to steam you will need to provide the contents of a Steam `config.vdf`
@@ -67,6 +68,7 @@ you can drop down to the lower level actions below and combine them to build you
 own workflow steps:
 
   * [Build with Vite](build/vite/readme.md) - Build for the web using Vite
+  * [Build - Compress Textures](build/png_compressor/action.yml) - Compress .png images to optimized .dxt textures
   * [Package with Electron](package/electron/readme.md) - Package existing web build using Electron
   * [Deploy to Web](deploy/web/readme.md) - Deploy existing built game to the Web at https://play.void.dev
   * [Deploy to Steam](deploy/steam/readme.md) - Deploy existing packaged game to Steam
