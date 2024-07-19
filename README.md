@@ -50,7 +50,7 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
         linuxDepotId:     "xxxx"                          # the Steam Depot ID for your Linux binaries (optional)
         setLiveBranch:    "beta"                          # the Steam branch to set live with this build (optional)
         buildDescription: "latest and greatest"           # a build description (optional)
-        pngCompressor:    "-d assets -i favicon.ico"      # arguments for png_compressor (optional)
+        pngCompressor:    "-d release/web -i favicon.png" # arguments for png_compressor (optional)
 ```
 
 For actions that deploy to steam you will need to provide the contents of a Steam `config.vdf`
