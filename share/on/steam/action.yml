@@ -41,6 +41,7 @@ runs:
       with:
         output: ${{ inputs.releasePath }}/web
         baseUrl: ${{ inputs.baseUrl }}
+        deployTarget: "steam"
 
     - name: "Build - Compress Textures"
       uses: "vaguevoid/actions/build/png_compressor@alpha"
