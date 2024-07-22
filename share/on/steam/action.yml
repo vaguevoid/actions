@@ -31,7 +31,11 @@ inputs:
   setLiveBranch:
     description: "A custom Steam branch to set live with this build ('default' not allowed)"
   pngCompress:
-    description: "(optional) command line arguments to pass to png_compressor"
+    description: "true | false to enable png_compressor"
+    default: "false"
+  pngCompressIgnore:
+    description: "(optional) space separated list of images (or directories) to be ignored by png_compressor"
+    default: "favicon.png"
 
 runs:
   using: "composite"
@@ -45,9 +49,10 @@ runs:
 
     - name: "Build - Compress Textures"
       uses: "vaguevoid/actions/build/png_compressor@alpha"
-      if: ${{ inputs.pngCompress != '' }}
+      if: ${{ inputs.pngCompress == "true" }}
       with:
-        args: ${{ inputs.pngCompress }}
+        path: ${{ inputs.releasePath }}/web
+        ignore: ${{ inputs.pngCompressIgnore }}
 
     - name: "Package for Windows"
       uses: "vaguevoid/actions/package/electron@alpha"
