@@ -50,7 +50,6 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
         linuxDepotId:      "xxxx"                          # the Steam Depot ID for your Linux binaries (optional)
         setLiveBranch:     "beta"                          # the Steam branch to set live with this build (optional)
         buildDescription:  "latest and greatest"           # a build description (optional)
-        pngCompress:       "-d release/web -i favicon.png" # arguments for png_compressor (optional)
         pngCompress:       "true"                          # enable texture compressor (optional)
         pngCompressIgnore: "favicon.png"                   # do not compress these textures (optional)
 ```
