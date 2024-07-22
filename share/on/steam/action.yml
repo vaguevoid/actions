@@ -49,7 +49,7 @@ runs:
 
     - name: "Build - Compress Textures"
       uses: "vaguevoid/actions/build/png_compressor@alpha"
-      if: ${{ inputs.pngCompress == "true" }}
+      if: ${{ inputs.pngCompress == 'true' }}
       with:
         path: ${{ inputs.releasePath }}/web
         ignore: ${{ inputs.pngCompressIgnore }}
