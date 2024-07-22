@@ -41,16 +41,18 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
     - name: Build, Package, and Deploy to Steam
       uses: vaguevoid/actions/share/on/steam@alpha
       with:
-        executable:       "my-game"                       # name (without extension) to use for generated executables
-        username:         gordonja                        # your Steam username
-        configVdf:        ${{ secrets.STEAM_CONFIG_VDF }} # a Saved Steam login session (see below)
-        appId:            "xxxx"                          # the Steam Application ID
-        windowsDepotId:   "xxxx"                          # the Steam Depot ID for your Windows binaries
-        macosDepotId:     "xxxx"                          # the Steam Depot ID for your MacOS binaries (optional)
-        linuxDepotId:     "xxxx"                          # the Steam Depot ID for your Linux binaries (optional)
-        setLiveBranch:    "beta"                          # the Steam branch to set live with this build (optional)
-        buildDescription: "latest and greatest"           # a build description (optional)
-        pngCompress:      "-d release/web -i favicon.png" # arguments for png_compressor (optional)
+        executable:        "my-game"                       # name (without extension) to use for generated executables
+        username:          gordonja                        # your Steam username
+        configVdf:         ${{ secrets.STEAM_CONFIG_VDF }} # a Saved Steam login session (see below)
+        appId:             "xxxx"                          # the Steam Application ID
+        windowsDepotId:    "xxxx"                          # the Steam Depot ID for your Windows binaries
+        macosDepotId:      "xxxx"                          # the Steam Depot ID for your MacOS binaries (optional)
+        linuxDepotId:      "xxxx"                          # the Steam Depot ID for your Linux binaries (optional)
+        setLiveBranch:     "beta"                          # the Steam branch to set live with this build (optional)
+        buildDescription:  "latest and greatest"           # a build description (optional)
+        pngCompress:       "-d release/web -i favicon.png" # arguments for png_compressor (optional)
+        pngCompress:       "true"                          # enable texture compressor (optional)
+        pngCompressIgnore: "favicon.png"                   # do not compress these textures (optional)
 ```
 
 For actions that deploy to steam you will need to provide the contents of a Steam `config.vdf`
