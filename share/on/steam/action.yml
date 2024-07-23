@@ -30,11 +30,11 @@ inputs:
     description: "Steam Depot ID for Linux binaries"
   setLiveBranch:
     description: "A custom Steam branch to set live with this build ('default' not allowed)"
-  pngCompress:
-    description: "true | false to enable png_compressor"
+  compressTextures:
+    description: "true | false to enable texture packing"
     default: "false"
-  pngCompressIgnore:
-    description: "(optional) space separated list of images (or directories) to be ignored by png_compressor"
+  ignoreTextures:
+    description: "(optional) space separated list of images (or directories) to be ignored by texture packer"
     default: "favicon.png"
 
 runs:
@@ -47,12 +47,12 @@ runs:
         baseUrl: ${{ inputs.baseUrl }}
         deployTarget: "steam"
 
-    - name: "Build - Compress Textures"
-      uses: "vaguevoid/actions/build/png_compressor@alpha"
-      if: ${{ inputs.pngCompress == 'true' }}
+    - name: "Package Textures"
+      uses: "vaguevoid/actions/package/textures@alpha"
+      if: ${{ inputs.compressTextures == 'true' }}
       with:
         path: ${{ inputs.releasePath }}/web
-        ignore: ${{ inputs.pngCompressIgnore }}
+        ignore: ${{ inputs.ignoreTextures }}
 
     - name: "Package for Windows"
       uses: "vaguevoid/actions/package/electron@alpha"
@@ -97,4 +97,3 @@ runs:
         macosDepotId: ${{ inputs.macosDepotId }}
         linuxDepotId: ${{ inputs.linuxDepotId }}
         setLiveBranch: ${{ inputs.setLiveBranch }}
-
