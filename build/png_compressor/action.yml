@@ -12,7 +12,7 @@ runs:
   using: "docker"
   image: "docker://vaguevoid/png_compressor:latest"
   args:
-    - "-d"
-    - "${{ inputs.path }}"
-    - "-i"
-    - "${{ inputs.ignore }}"
+    - -d
+    - ${{ inputs.path }}
+    - -i
+    - ${{ inputs.ignore }}
