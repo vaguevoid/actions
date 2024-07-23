@@ -1,0 +1,16 @@
+name: "Void Package Textures"
+author: "Jake Gordon <jake@void.dev>"
+description: "Default texture packager for Void games"
+inputs:
+  path:
+    description: "path to your bundled web game"
+    default: "release/web"
+  ignore:
+    description: "(optional) space separated list of textures (or directories) to be ignored"
+    default: "favicon.png"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    path: ${{ inputs.path }}
+    ignore: ${{ inputs.ignore }}
