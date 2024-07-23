@@ -35,7 +35,10 @@ cat << 'EOF' > "$bundle/electron.js"
   const createWindow = () => {
     const win = new BrowserWindow({
       width: 800,
-      height: 600
+      height: 600,
+      webPreferences: {
+        devTools: true,
+      }
     })
     win.setMenu(null)
     win.loadFile("index.html")
