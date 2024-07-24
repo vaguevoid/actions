@@ -30,7 +30,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://vaguevoid/deploy-steam:latest"
   env:
     buildDescription: ${{ inputs.buildDescription }}
     executable: ${{ inputs.executable }}

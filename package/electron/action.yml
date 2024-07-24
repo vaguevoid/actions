@@ -32,7 +32,7 @@ inputs:
     default: "31.0.2"
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://vaguevoid/package-electron:latest"
   env:
     bundle: ${{ inputs.bundle }}
     releasePath: ${{ inputs.releasePath }}

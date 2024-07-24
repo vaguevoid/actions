@@ -14,7 +14,7 @@ inputs:
     default: "web"
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://vaguevoid/build-vite:latest"
   env:
     output: ${{ inputs.output }}
     baseUrl: ${{ inputs.baseUrl }}

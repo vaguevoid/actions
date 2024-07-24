@@ -28,7 +28,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://vaguevoid/deploy-web:latest"
   env:
     host: ${{ inputs.host }}
     path: ${{ inputs.path }}

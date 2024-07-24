@@ -10,7 +10,7 @@ inputs:
     default: "favicon.png"
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://vaguevoid/package-textures:latest"
   env:
     path: ${{ inputs.path }}
     ignore: ${{ inputs.ignore }}
