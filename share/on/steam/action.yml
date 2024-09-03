@@ -36,6 +36,9 @@ inputs:
   ignoreTextures:
     description: "(optional) space separated list of images (or directories) to be ignored by texture packer"
     default: "favicon.png"
+  prebuild:
+    description: "custom task to run before building the game"
+    required: false
 
 runs:
   using: "composite"
@@ -43,6 +46,7 @@ runs:
     - name: "Build"
       uses: "vaguevoid/actions/build/vite@alpha"
       with:
+        prebuild: ${{ inputs.prebuild }}
         output: ${{ inputs.releasePath }}/web
         baseUrl: ${{ inputs.baseUrl }}
         deployTarget: "steam"

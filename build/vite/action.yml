@@ -2,6 +2,9 @@ name: "Void Build Vite"
 author: "Jake Gordon <jake@void.dev>"
 description: "Default web builder for Void games using Vite"
 inputs:
+  prebuild:
+    description: "custom task to run before building the game"
+    required: false
   output:
     description: "output directory for bundled web game"
     default: "release/web"
@@ -16,6 +19,7 @@ runs:
   using: "docker"
   image: "docker://vaguevoid/build-vite:latest"
   env:
+    prebuild: ${{ inputs.prebuild }}
     output: ${{ inputs.output }}
     baseUrl: ${{ inputs.baseUrl }}
     deployTarget: ${{ inputs.deployTarget }}
