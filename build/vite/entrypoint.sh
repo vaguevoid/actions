@@ -1,6 +1,8 @@
 #!/bin/bash
 set -x
 
+git config --global --add safe.directory $(pwd) # enable build (or prebuild) to use git binary
+
 output=${output:-./release/web}
 baseUrl=${baseUrl:-./}
 prebuild=${prebuild}
