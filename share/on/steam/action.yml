@@ -46,7 +46,7 @@ runs:
     - name: "Build"
       uses: "vaguevoid/actions/build/vite@alpha"
       with:
-        prebuild: ${{ inputes.prebuild }}
+        prebuild: ${{ inputs.prebuild }}
         output: ${{ inputs.releasePath }}/web
         baseUrl: ${{ inputs.baseUrl }}
         deployTarget: "steam"
