@@ -33,6 +33,13 @@ inputs:
   compressTextures:
     description: "true | false to enable texture packing"
     default: "false"
+  textureFormat:
+    description: "format for compressed textures (DXT or KTX)"
+    type: choice
+    options:
+      - "DXT"
+      - "KTX"
+    default: "DXT"
   ignoreTextures:
     description: "(optional) space separated list of images (or directories) to be ignored by texture packer"
     default: "favicon.png"
@@ -56,6 +63,7 @@ runs:
       if: ${{ inputs.compressTextures == 'true' }}
       with:
         path: ${{ inputs.releasePath }}/web
+        format: ${{ inputs.textureFormat }}
         ignore: ${{ inputs.ignoreTextures }}
 
     - name: "Package for Windows"
