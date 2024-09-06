@@ -43,6 +43,9 @@ inputs:
   ignoreTextures:
     description: "(optional) space separated list of images (or directories) to be ignored by texture packer"
     default: "favicon.png"
+  textureThreads:
+    description: "(optional) thread count for image compressor (use 4 for standard GitHub Runner)"
+    default: 4
   prebuild:
     description: "custom task to run before building the game"
     required: false
@@ -65,6 +68,7 @@ runs:
         path: ${{ inputs.releasePath }}/web
         format: ${{ inputs.textureFormat }}
         ignore: ${{ inputs.ignoreTextures }}
+        threads: ${{ inputs.textureThreads }}
 
     - name: "Package for Windows"
       uses: "vaguevoid/actions/package/electron@alpha"
