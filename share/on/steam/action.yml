@@ -2,6 +2,10 @@ name: "Share a Void game on Steam"
 author: "Jake Gordon <jake@void.dev>"
 description: "Build, Package, and Deploy a Void game to Steam"
 inputs:
+  buildTask:
+    description: "(optional) bun task to build the game"
+    required: false
+    default: "build"
   buildDescription:
     description: "Description for this build"
   executable:
@@ -46,9 +50,6 @@ inputs:
   textureThreads:
     description: "(optional) thread count for image compressor (use 4 for standard GitHub Runner)"
     default: 4
-  prebuild:
-    description: "custom task to run before building the game"
-    required: false
 
 runs:
   using: "composite"
@@ -56,7 +57,7 @@ runs:
     - name: "Build"
       uses: "vaguevoid/actions/build/vite@alpha"
       with:
-        prebuild: ${{ inputs.prebuild }}
+        buildTask: ${{ inputs.buildTask }}
         output: ${{ inputs.releasePath }}/web
         baseUrl: ${{ inputs.baseUrl }}
         deployTarget: "steam"
