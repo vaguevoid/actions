@@ -5,10 +5,9 @@ path="${path:-release/web}"
 bundle="$(dirname "${path}")/web.tgz"
 organization="${organization}"
 game="${game}"
-label=$(echo "$label" | sed 's/[^a-zA-Z\d=]/-/g')
 token="${token}"
 password="${password}"
-endpoint="${host}api/${organization}/${game}/share/${label}"
+endpoint="${host}api/${organization}/${game}/share"
 
 if [[ -z "$host" ]]; then
   echo "host required"
@@ -44,7 +43,7 @@ tar -czf ${bundle} -C ${path} .
 
 echo "Uploading ${bundle} to ${endpoint}"
 OUTPUT_FILE=$(mktemp)
-STATUS_CODE=$(curl -s -X POST -o $OUTPUT_FILE -w "%{http_code}" --connect-timeout 180 --max-time 180 -H "X-Deploy-Password: ${password}" -H "Authorization: Bearer ${token}" --data-binary "@${bundle}" ${endpoint} 2>/dev/null)
+STATUS_CODE=$(curl -s -X POST -o $OUTPUT_FILE -w "%{http_code}" --connect-timeout 180 --max-time 180 -H "X-Deploy-Label: ${label}" -H "X-Deploy-Password: ${password}" -H "Authorization: Bearer ${token}" --data-binary "@${bundle}" ${endpoint} 2>/dev/null)
 
 if [[ $STATUS_CODE == "404" ]]; then
   echo "endpoint ${endpoint} not found, are the organization and game correct?"

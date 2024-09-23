@@ -17,8 +17,8 @@ inputs:
     description: "your play.void.dev game name"
     required: true
   label:
-    description: "(optional) build label - branch name will be used by default"
-    required: false
+    description: "build label"
+    required: true
   token:
     description: "your Void personal access token"
     required: true
