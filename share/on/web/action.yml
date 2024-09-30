@@ -25,6 +25,10 @@ inputs:
   password:
     description: "(optional) password protect your shared game"
     required: false
+  pinned:
+    description: "(optional) true | false to pin deploy and prevent auto expiration and deletion"
+    required: false
+    default: "false"
   baseUrl:
     description: "base URL"
     required: true
@@ -84,3 +88,4 @@ runs:
         label: ${{ inputs.label || steps.default_label.outputs.label }}
         token: ${{ inputs.token }}
         password: ${{ inputs.password }}
+        pinned: ${{ inputs.pinned }}

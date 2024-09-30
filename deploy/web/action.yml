@@ -25,6 +25,10 @@ inputs:
   password:
     description: "(optional) password protect your shared game"
     required: false
+  pinned:
+    description: "(optional) true | false to pin deploy and prevent auto expiration and deletion"
+    default: "false"
+    required: false
 
 runs:
   using: "docker"
@@ -37,4 +41,5 @@ runs:
     label: ${{ inputs.label }}
     token: ${{ inputs.token }}
     password: ${{ inputs.password }}
+    pinned: ${{ inputs.pinned }}
 

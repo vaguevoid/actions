@@ -7,6 +7,7 @@ organization="${organization}"
 game="${game}"
 token="${token}"
 password="${password}"
+pinned="${pinned}"
 endpoint="${host}api/${organization}/${game}/share"
 
 if [[ -z "$host" ]]; then
@@ -43,7 +44,7 @@ tar -czf ${bundle} -C ${path} .
 
 echo "Uploading ${bundle} to ${endpoint}"
 OUTPUT_FILE=$(mktemp)
-STATUS_CODE=$(curl -s -X POST -o $OUTPUT_FILE -w "%{http_code}" --connect-timeout 180 --max-time 180 -H "X-Deploy-Label: ${label}" -H "X-Deploy-Password: ${password}" -H "Authorization: Bearer ${token}" --data-binary "@${bundle}" ${endpoint} 2>/dev/null)
+STATUS_CODE=$(curl -s -X POST -o $OUTPUT_FILE -w "%{http_code}" --connect-timeout 180 --max-time 180 -H "X-Deploy-Label: ${label}" -H "X-Deploy-Password: ${password}" -H "X-Deploy-Pinned: ${pinned}" -H "Authorization: Bearer ${token}" --data-binary "@${bundle}" ${endpoint} 2>/dev/null)
 
 if [[ $STATUS_CODE == "404" ]]; then
   echo "endpoint ${endpoint} not found, are the organization and game correct?"
