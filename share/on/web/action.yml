@@ -79,7 +79,7 @@ runs:
       id: default_label
 
     - name: "Deploy"
-      uses: "vaguevoid/actions/deploy/web@alpha"
+      uses: "vaguevoid/actions/deploy/web@scarlett/deploy-pinned-option" # TODO: REVERT, for testing purposes
       with:
         path: ${{ inputs.releasePath }}/web
         host: ${{ inputs.host }}
