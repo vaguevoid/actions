@@ -28,7 +28,6 @@ inputs:
   pinned:
     description: "(optional) true | false to pin deploy and prevent auto expiration and deletion"
     required: false
-    default: "false"
   baseUrl:
     description: "base URL"
     required: true
