@@ -1,6 +1,6 @@
 #!/bin/bash
 
-path=${path:-release/web}
+path=${path:-dist}
 ignore=${ignore:-favicon.png}
 format=${format:-DXT}
 threads=${threads:-4}

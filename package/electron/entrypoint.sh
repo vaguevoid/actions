@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bundle=${bundle:-release/web}
+bundle=${bundle:-dist}
 releasePath=${releasePath:-release}
 executable=${executable:-electron}
 electronVersion=${electronVersion:-31.0.2}

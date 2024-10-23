@@ -1,7 +1,7 @@
 #!/bin/bash
 
 host="${host:-https://play.void.dev/}"
-path="${path:-release/web}"
+path="${path:-dist}"
 bundle="$(dirname "${path}")/web.tgz"
 organization="${organization}"
 game="${game}"

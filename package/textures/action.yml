@@ -4,7 +4,7 @@ description: "Default texture packager for Void games"
 inputs:
   path:
     description: "path to your bundled web game"
-    default: "release/web"
+    default: "dist"
   format:
     description: "format for compressed textures (DXT or KTX)"
     type: choice

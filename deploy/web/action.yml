@@ -8,7 +8,7 @@ inputs:
     required: true
   path:
     description: "path to built game assets"
-    default: "release/web"
+    default: "dist"
     required: true
   organization:
     description: "your play.void.dev organization name"

@@ -4,7 +4,7 @@ description: "Default Electron packager for Void games"
 inputs:
   bundle:
     description: "path to your bundled web game"
-    default: "release/web"
+    default: "dist"
   releasePath:
     description: "directory for packaged releases"
     default: "release"
