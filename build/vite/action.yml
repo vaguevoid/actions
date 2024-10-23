@@ -6,9 +6,6 @@ inputs:
     description: "(optional) bun task to build the game"
     required: false
     default: "build"
-  output:
-    description: "output directory for bundled web game"
-    default: "release/web"
   deployTarget:
     description: "(optional) set VITE_DEPLOY_TARGET if you require conditional code based on import.meta.env.VITE_DEPLOY_TARGET"
     required: false
@@ -18,5 +15,4 @@ runs:
   image: "docker://vaguevoid/build-vite:v1"
   env:
     taskName: ${{ inputs.taskName }}
-    output: ${{ inputs.output }}
     deployTarget: ${{ inputs.deployTarget }}

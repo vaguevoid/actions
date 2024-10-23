@@ -13,6 +13,4 @@ Assumptions:
 
     - name: Build
       uses: vaguevoid/actions/build/vite@v1
-      with:
-        output: "release/web"  # output directory for bundled web game
 ```
