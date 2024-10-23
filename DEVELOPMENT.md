@@ -1,10 +1,9 @@
 # Development
 
-For developing these actions, you can use bun (or npm) as a task runner
+For developing these actions, you can use the following tasks
 
 ```bash
-> bun install
-> bun run images   # build all docker images
+> make images   # build all docker images
 ```
 
 Some of these GitHub actions expect to be mounted so that the CWD maps to the GitHub Actions

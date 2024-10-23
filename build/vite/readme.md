@@ -12,8 +12,7 @@ Assumptions:
       uses: actions/checkout@v4
 
     - name: Build
-      uses: vaguevoid/actions/build/vite@alpha
+      uses: vaguevoid/actions/build/vite@v1
       with:
         output: "release/web"  # output directory for bundled web game
-        baseUrl: "./"          # ensure vite generates relative links
 ```

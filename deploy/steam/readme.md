@@ -16,28 +16,28 @@ Assumptions
       uses: actions/checkout@v4
 
     - name: Build
-      uses: vaguevoid/actions/build/vite@alpha
+      uses: vaguevoid/actions/build/vite@v1
 
     - name: Package for Windows
-      uses: vaguevoid/actions/package/electron@alpha
+      uses: vaguevoid/actions/package/electron@v1
       with:
         executable: ${{ env.executable }}
         platform: "win-32"
 
     - name: Package for Mac OS
-      uses: vaguevoid/actions/package/electron@alpha
+      uses: vaguevoid/actions/package/electron@v1
       with:
         executable: ${{ env.executable }}
         platform: "darwin"
 
     - name: Package for Linux
-      uses: vaguevoid/actions/package/electron@alpha
+      uses: vaguevoid/actions/package/electron@v1
       with:
         executable: ${{ env.executable }}
         platform: "linux"
 
     - name: Deploy to Steam
-      uses: vaguevoid/actions/deploy/steam@alpha
+      uses: vaguevoid/actions/deploy/steam@v1
       with:
         executable:        ${{ env.executable }}           # name (without extension) used for generated executables
         username:          gordonja                        # your Steam username

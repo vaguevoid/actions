@@ -12,10 +12,10 @@ Assumptions:
       uses: actions/checkout@v4
 
     - name: Build
-      uses: vaguevoid/actions/build/vite@alpha
+      uses: vaguevoid/actions/build/vite@v1
 
     - name: Deploy to Web
-      uses: vaguevoid/actions/deploy/web@alpha
+      uses: vaguevoid/actions/deploy/web@v1
       with:
         label:        "latest"                          # label your deploy
         organization: "acme"                            # your play.void.dev organization name

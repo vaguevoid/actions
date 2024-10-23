@@ -20,7 +20,7 @@ This [action](share/on/web/action.yml) can be used to build and share your game 
         uses: actions/checkout@v4
 
       - name: Build, Package, and Deploy to Web
-        uses: vaguevoid/actions/share/on/web@alpha
+        uses: vaguevoid/actions/share/on/web@v1
         with:
           label:        "latest"                          # label your deploy
           organization: "acme"                            # your play.void.dev organization name
@@ -39,7 +39,7 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
       uses: actions/checkout@v4
     
     - name: Build, Package, and Deploy to Steam
-      uses: vaguevoid/actions/share/on/steam@alpha
+      uses: vaguevoid/actions/share/on/steam@v1
       with:
         executable:        "my-game"                       # name (without extension) to use for generated executables
         username:          gordonja                        # your Steam username

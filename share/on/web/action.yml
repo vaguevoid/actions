@@ -29,10 +29,6 @@ inputs:
     description: "(optional) true | false to pin deploy and prevent auto expiration and deletion"
     required: false
     default: "false"
-  baseUrl:
-    description: "base URL"
-    required: true
-    default: "./"
   releasePath:
     description: "release folder for build assets"
     required: true
@@ -58,15 +54,14 @@ runs:
   using: "composite"
   steps:
     - name: "Build"
-      uses: "vaguevoid/actions/build/vite@alpha"
+      uses: "vaguevoid/actions/build/vite@v1"
       with:
         taskName: ${{ inputs.buildTask }}
         output: ${{ inputs.releasePath }}/web
-        baseUrl: ${{ inputs.baseUrl }}
         deployTarget: "play.void.dev"
 
     - name: "Package Textures"
-      uses: "vaguevoid/actions/package/textures@alpha"
+      uses: "vaguevoid/actions/package/textures@v1"
       if: ${{ inputs.compressTextures == 'true' }}
       with:
         path: ${{ inputs.releasePath }}/web
@@ -75,11 +70,11 @@ runs:
         threads: ${{ inputs.textureThreads }}
 
     - name: Get default deploy label
-      uses: vaguevoid/actions/deploy/label@alpha
+      uses: vaguevoid/actions/deploy/label@v1
       id: default_label
 
     - name: "Deploy"
-      uses: "vaguevoid/actions/deploy/web@alpha"
+      uses: "vaguevoid/actions/deploy/web@v1"
       with:
         path: ${{ inputs.releasePath }}/web
         host: ${{ inputs.host }}

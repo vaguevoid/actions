@@ -14,9 +14,6 @@ inputs:
   releasePath:
     description: "path to packaged releases"
     default: "release"
-  baseUrl:
-    description: "base URL"
-    default: "./"
   username:
     description: "Steam user name"
     required: true
@@ -55,15 +52,14 @@ runs:
   using: "composite"
   steps:
     - name: "Build"
-      uses: "vaguevoid/actions/build/vite@alpha"
+      uses: "vaguevoid/actions/build/vite@v1"
       with:
         taskName: ${{ inputs.buildTask }}
         output: ${{ inputs.releasePath }}/web
-        baseUrl: ${{ inputs.baseUrl }}
         deployTarget: "steam"
 
     - name: "Package Textures"
-      uses: "vaguevoid/actions/package/textures@alpha"
+      uses: "vaguevoid/actions/package/textures@v1"
       if: ${{ inputs.compressTextures == 'true' }}
       with:
         path: ${{ inputs.releasePath }}/web
@@ -72,7 +68,7 @@ runs:
         threads: ${{ inputs.textureThreads }}
 
     - name: "Package for Windows"
-      uses: "vaguevoid/actions/package/electron@alpha"
+      uses: "vaguevoid/actions/package/electron@v1"
       if: ${{ inputs.windowsDepotId != '' }}
       with:
         bundle: ${{ inputs.releasePath }}/web
@@ -82,7 +78,7 @@ runs:
         arch: x64
 
     - name: "Package for MacOS"
-      uses: "vaguevoid/actions/package/electron@alpha"
+      uses: "vaguevoid/actions/package/electron@v1"
       if: ${{ inputs.macosDepotId != '' }}
       with:
         bundle: ${{ inputs.releasePath }}/web
@@ -92,7 +88,7 @@ runs:
         arch: x64
 
     - name: "Package for Linux"
-      uses: "vaguevoid/actions/package/electron@alpha"
+      uses: "vaguevoid/actions/package/electron@v1"
       if: ${{ inputs.linuxDepotId != '' }}
       with:
         bundle: ${{ inputs.releasePath }}/web
@@ -102,7 +98,7 @@ runs:
         arch: x64
 
     - name: "Deploy"
-      uses: "vaguevoid/actions/deploy/steam@alpha"
+      uses: "vaguevoid/actions/deploy/steam@v1"
       with:
         buildDescription: ${{ inputs.buildDescription }}
         executable: ${{ inputs.executable }}
