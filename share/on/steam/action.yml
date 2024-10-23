@@ -34,22 +34,6 @@ inputs:
     description: "Steam Depot ID for Linux binaries"
   setLiveBranch:
     description: "A custom Steam branch to set live with this build ('default' not allowed)"
-  compressTextures:
-    description: "true | false to enable texture packing"
-    default: "false"
-  textureFormat:
-    description: "format for compressed textures (DXT or KTX)"
-    type: choice
-    options:
-      - "DXT"
-      - "KTX"
-    default: "DXT"
-  ignoreTextures:
-    description: "(optional) space separated list of images (or directories) to be ignored by texture packer"
-    default: "favicon.png"
-  textureThreads:
-    description: "(optional) thread count for image compressor (use 4 for standard GitHub Runner)"
-    default: 4
 
 runs:
   using: "composite"
@@ -59,15 +43,6 @@ runs:
       with:
         taskName: ${{ inputs.buildTask }}
         deployTarget: "steam"
-
-    - name: "Package Textures"
-      uses: "vaguevoid/actions/package/textures@v1"
-      if: ${{ inputs.compressTextures == 'true' }}
-      with:
-        path: ${{ inputs.outDir }}
-        format: ${{ inputs.textureFormat }}
-        ignore: ${{ inputs.ignoreTextures }}
-        threads: ${{ inputs.textureThreads }}
 
     - name: "Package for Windows"
       uses: "vaguevoid/actions/package/electron@v1"

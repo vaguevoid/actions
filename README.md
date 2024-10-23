@@ -50,8 +50,6 @@ This [action](share/on/steam/action.yml) can be used to build, package, and depl
         linuxDepotId:      "xxxx"                          # the Steam Depot ID for your Linux binaries (optional)
         setLiveBranch:     "beta"                          # the Steam branch to set live with this build (optional)
         buildDescription:  "latest and greatest"           # a build description (optional)
-        compressTextures:  "true"                          # enable texture compressor (optional)
-        ignoreTextures:    "favicon.png"                   # do not compress these textures (optional)
 ```
 
 For actions that deploy to steam you will need to provide the contents of a Steam `config.vdf`
