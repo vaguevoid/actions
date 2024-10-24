@@ -5,16 +5,10 @@ inputs:
   path:
     description: "path to your bundled web game"
     default: "dist"
-  format:
-    description: "format for compressed textures (DXT or KTX)"
-    type: choice
-    options:
-     - "DXT"
-     - "KTX"
-    default: "DXT"
-  ignore:
-    description: "(optional) space separated list of textures (or directories) to be ignored"
-    default: "favicon.png"
+  config:
+    description: "path to image compressor configuration file"
+    default: "image-compressor.json"
+    required: true
   threads:
     description: "(optional) thread count for image compressor (use 4 for standard GitHub Runner)"
     default: 4
@@ -23,6 +17,5 @@ runs:
   image: "docker://vaguevoid/package-textures:v1"
   env:
     path: ${{ inputs.path }}
-    format: ${{ inputs.format }}
-    ignore: ${{ inputs.ignore }}
+    config: ${{ inputs.config }}
     threads: ${{ inputs.threads }}

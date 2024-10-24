@@ -1,14 +1,19 @@
 #!/bin/bash
 
 path=${path:-dist}
-ignore=${ignore:-favicon.png}
-format=${format:-DXT}
+config=$(realpath ${config:-image-compressor.json})
 threads=${threads:-4}
+
+if [ ! -f "$config" ]; then
+  echo "$config doesn't exist"
+  exit 1
+fi
 
 set -x
 
 date
-/usr/local/bin/image_compressor -d ${path} -i ${ignore} --delete-original-images -c ${format} -t ${threads}
+cd ${path}
+/usr/local/bin/image_compressor compress -c ${config}
 result=$?
 date
 
