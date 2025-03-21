@@ -32,7 +32,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: "docker://vaguevoid/deploy-web:latest"
+  image: "docker://vaguevoid/deploy-web:alpha"
   env:
     host: ${{ inputs.host }}
     path: ${{ inputs.path }}

@@ -20,7 +20,7 @@ inputs:
     default: 4
 runs:
   using: "docker"
-  image: "docker://vaguevoid/package-textures:latest"
+  image: "docker://vaguevoid/package-textures:alpha"
   env:
     path: ${{ inputs.path }}
     format: ${{ inputs.format }}
